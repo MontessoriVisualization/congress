@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nepali Congress Learning Platform</title>
+  <link rel="preload" as="image" href="pics/Nepali-Congress-Flag-browser.jpg">
+  <link rel="preload" as="image" href="pics/hero-browser.webp">
+  <link rel="preload" as="image" href="pics/1stthumnai-browser.jpg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="translator.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7"></circle>
+      <path d="m20 20-4-4"></path>
+    </symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="2" y1="12" x2="22" y2="12"></line>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+    </symbol>
+    <symbol id="icon-podcast" viewBox="0 0 24 24">
+      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+      <line x1="12" y1="19" x2="12" y2="23"></line>
+      <line x1="8" y1="23" x2="16" y2="23"></line>
+    </symbol>
+    <symbol id="icon-pause-fill" viewBox="0 0 24 24">
+      <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none"></rect>
+      <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none"></rect>
+    </symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"></circle>
+      <path d="M5 21a7 7 0 0 1 14 0"></path>
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9.5" cy="7" r="4"></circle>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </symbol>
+    <symbol id="icon-shield-check" viewBox="0 0 24 24">
+      <path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path>
+      <path d="m9 12 2 2 4-5"></path>
+    </symbol>
+    <symbol id="icon-book-open" viewBox="0 0 24 24">
+      <path d="M12 7v14"></path>
+      <path d="M3 5a7 7 0 0 1 9 2 7 7 0 0 1 9-2v14a7 7 0 0 0-9 2 7 7 0 0 0-9-2V5Z"></path>
+    </symbol>
+    <symbol id="icon-play-square" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+      <path d="m10 9 5 3-5 3V9Z"></path>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <path d="M8 2v4"></path>
+      <path d="M16 2v4"></path>
+      <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+      <path d="M3 10h18"></path>
+      <path d="M8 14h.01"></path>
+      <path d="M12 14h.01"></path>
+      <path d="M16 14h.01"></path>
+      <path d="M8 18h.01"></path>
+      <path d="M12 18h.01"></path>
+      <path d="M16 18h.01"></path>
+    </symbol>
+    <symbol id="icon-graduation-cap" viewBox="0 0 24 24">
+      <path d="m22 10-10-5-10 5 10 5 10-5Z"></path>
+      <path d="M6 12v5c3 2 9 2 12 0v-5"></path>
+      <path d="M22 10v6"></path>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14"></path>
+      <path d="m13 6 6 6-6 6"></path>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+      <path d="m9 18 6-6-6-6"></path>
+    </symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+      <path d="m15 18-6-6 6-6"></path>
+    </symbol>
+    <symbol id="icon-sparkle" viewBox="0 0 24 24">
+      <path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"></path>
+      <path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"></path>
+    </symbol>
+    <symbol id="icon-play-fill" viewBox="0 0 24 24">
+      <path d="m9 6 10 6-10 6V6Z" fill="currentColor" stroke="none"></path>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <polyline points="12 6 12 12 16 14"></polyline>
+    </symbol>
+    <symbol id="icon-facebook" viewBox="0 0 24 24">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+    </symbol>
+    <symbol id="icon-twitter" viewBox="0 0 24 24">
+      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+    </symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+    </symbol>
+    <symbol id="icon-youtube" viewBox="0 0 24 24">
+      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+      <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"></polygon>
+    </symbol>
+    <symbol id="icon-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <circle cx="12" cy="12" r="6"></circle>
+      <circle cx="12" cy="12" r="2"></circle>
+    </symbol>
+    <symbol id="icon-hand-heart" viewBox="0 0 24 24">
+      <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.6.6L6 13"></path>
+      <path d="m7 18 1.6-1.4c.4-.4 1-.6 1.6-.6H13c1 0 2-.4 2.7-1.1l4.6-4.4a2 2 0 0 0-2.8-2.9l-4.2 4"></path>
+      <path d="M2 12h4v8H2z"></path>
+      <path d="M16 4.5c1.2-1.2 3.1-.4 3.1 1.3 0 2-3.1 3.7-3.1 3.7S12.9 7.8 12.9 5.8c0-1.7 2-2.5 3.1-1.3Z"></path>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Nepali Congress home">
+      <img class="brand-flag" src="pics/Nepali-Congress-Flag-browser.jpg" alt="Nepali Congress flag" width="900" height="506" loading="eager" fetchpriority="high">
+      <div>
+        <div class="brand-title" data-trn="brand.title">नेपाली कांग्रेस</div>
+        <div class="brand-subtitle" data-trn="brand.subtitle">Digital Learning &amp; Assessment Platform</div>
+      </div>
+    </a>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a class="active" href="#" data-trn="nav.home">Home</a>
+      <a href="#" data-trn="nav.articles">Articles</a>
+      <a href="#" data-trn="nav.videos">Videos</a>
+      <a href="#" data-trn="nav.calendar">Calendar</a>
+      <a href="#" data-trn="nav.documents">Documents</a>
+      <a href="#" data-trn="nav.about">About Us</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" aria-label="Search" data-trn="btn.search">
+        <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-search"></use></svg>
+      </button>
+
+      <!-- Language Selector -->
+      <div class="lang-switcher">
+        <button class="lang-btn" aria-expanded="false" aria-haspopup="true" aria-label="Select Language">
+          <svg class="svg-icon lang-icon" aria-hidden="true" focusable="false"><use href="#icon-globe"></use></svg>
+          <span class="lang-label">English</span>
+          <svg class="svg-icon chevron-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+        </button>
+        <ul class="lang-dropdown">
+          <li><button data-lang-select="en">English</button></li>
+          <li><button data-lang-select="ne">नेपाली</button></li>
+        </ul>
+      </div>
+
+      <button class="outline-btn">
+        <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-user"></use></svg>
+        <span data-trn="btn.login">Log In</span>
+      </button>
+      <button class="primary-btn">
+        <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg>
+        <span data-trn="btn.join">Join Now</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <svg class="svg-icon sparkle-icon" aria-hidden="true" focusable="false"><use href="#icon-sparkle"></use></svg>
+          <span data-trn="hero.eyebrow">AI POWERED PLATFORM</span>
+        </div>
+        <h1 data-trn="hero.title">
+          <span>Learn. Understand.</span>
+          <strong>Lead the Change.</strong>
+        </h1>
+        <div class="red-mark" aria-hidden="true"></div>
+        <p data-trn="hero.desc">Empowering Nepali Congress members with knowledge, resources, and assessments to build a stronger tomorrow.</p>
+
+        <div class="hero-actions">
+          <a class="primary-link" href="#">
+            <span data-trn="hero.explore">Explore Articles</span>
+            <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+          </a>
+          <a class="secondary-link" href="#">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg>
+            <span data-trn="hero.join">Join Nepali Congress</span>
+          </a>
+        </div>
+
+        <a class="verify-link" href="#">
+          <svg class="svg-icon shield-check-icon" aria-hidden="true" focusable="false"><use href="#icon-shield-check"></use></svg>
+          <span data-trn="hero.verify">Verify your membership certificate</span>
+          <svg class="svg-icon chevron-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+        </a>
+      </div>
+
+      <div class="hero-art" aria-label="Hero image">
+        <img class="hero-image" src="pics/hero-browser.webp" alt="Nepali Congress rally illustration" width="1717" height="916" loading="eager" fetchpriority="high">
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Platform statistics">
+      <div class="stat-item">
+        <div class="stat-icon green"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-book-open"></use></svg></div>
+        <div>
+          <strong data-trn="stats.articles_num">1,250+</strong>
+          <span data-trn="stats.articles_text">Articles Published</span>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon red"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-play-square"></use></svg></div>
+        <div>
+          <strong data-trn="stats.videos_num">850+</strong>
+          <span data-trn="stats.videos_text">Videos Available</span>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon green"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg></div>
+        <div>
+          <strong data-trn="stats.events_num">120+</strong>
+          <span data-trn="stats.events_text">Events Organized</span>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon red"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg></div>
+        <div>
+          <strong data-trn="stats.members_num">25K+</strong>
+          <span data-trn="stats.members_text">Active Members</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-section">
+      <div class="section-intro">
+        <span class="section-kicker" data-trn="featured.kicker">FEATURED CONTENT</span>
+        <h2 data-trn="featured.heading">Explore. Learn. <strong>Grow.</strong></h2>
+        <p data-trn="featured.sub">Curated articles, important updates, and insightful videos handpicked for you.</p>
+        <a class="dark-link" href="#">
+          <span data-trn="featured.view_all">View all articles</span>
+          <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      </div>
+
+      <div class="content-row">
+        <article class="content-card">
+          <div class="card-image card-photo">
+            <img src="pics/1stthumnai-browser.jpg" alt="B. P. Koirala portrait thumbnail" width="1536" height="1024" loading="eager" fetchpriority="high">
+          </div>
+          <span class="badge green-badge" data-trn="featured.badge_featured">FEATURED</span>
+          <div class="card-body">
+            <h3 data-trn="featured.card1_title">बि. पी. कोइरालाको विचार र दर्शन</h3>
+            <time datetime="2024-05-12">
+              <svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg>
+              <span data-trn="featured.card1_date">May 12, 2024</span>
+            </time>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <div class="card-image image-placeholder red-tint">
+            <img src="pics/secondthumn.png" alt="Nepali Congress crowd thumbnail" width="1536" height="1024" loading="eager">
+          </div>
+          <span class="badge red-badge" data-trn="featured.badge_article">ARTICLE</span>
+          <div class="card-body">
+            <h3 data-trn="featured.card2_title">नेपाली कांग्रेसको इतिहास र अभियान</h3>
+            <time datetime="2024-05-10">
+              <svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg>
+              <span data-trn="featured.card2_date">May 10, 2024</span>
+            </time>
+          </div>
+        </article>
+
+        <article class="content-card video-card">
+          <div class="card-image card-photo dark-tint">
+            <img src="pics/third-webp.webp" alt="Nepali Congress interview thumbnail" width="1536" height="1024" loading="eager">
+            <button class="play-button" aria-label="Play video">
+              <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false"><use href="#icon-play-fill"></use></svg>
+            </button>
+            <span class="duration">18:45</span>
+          </div>
+          <span class="badge green-badge" data-trn="featured.badge_video">VIDEO</span>
+          <div class="card-body">
+            <h3 data-trn="featured.card3_title">लोकतन्त्र र गणतन्त्रमा नेपाली कांग्रेसको भूमिका</h3>
+            <time datetime="2024-05-08">
+              <svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg>
+              <span data-trn="featured.card3_date">May 8, 2024</span>
+            </time>
+          </div>
+        </article>
+
+        <article class="content-card">
+          <div class="card-image image-placeholder document-tint">
+            <img src="pics/forththum-webp.webp" alt="Nepali Congress document thumbnail" width="1536" height="1024" loading="eager">
+          </div>
+          <span class="badge red-badge" data-trn="featured.badge_document">DOCUMENT</span>
+          <div class="card-body">
+            <h3 data-trn="featured.card4_title">नेपाली कांग्रेसको विधान (संशोधित)</h3>
+            <time datetime="2024-05-05">
+              <svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg>
+              <span data-trn="featured.card4_date">May 5, 2024</span>
+            </time>
+          </div>
+        </article>
+      </div>
+
+      <div class="carousel-controls" aria-label="Featured carousel controls">
+        <button class="carousel-btn previous" aria-label="Previous">
+          <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-left"></use></svg>
+        </button>
+        <button class="carousel-btn next" aria-label="Next">
+          <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="quick-actions" aria-label="Quick actions">
+      <a href="#" class="quick-action">
+        <div class="quick-icon green-soft"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg></div>
+        <div>
+          <strong data-trn="actions.join_title">Join Nepali Congress</strong>
+          <span data-trn="actions.join_desc">Become a member and be part of the change.</span>
+        </div>
+        <svg class="svg-icon quick-arrow green-arrow" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+      </a>
+
+      <a href="#" class="quick-action">
+        <div class="quick-icon red-soft"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-shield-check"></use></svg></div>
+        <div>
+          <strong data-trn="actions.verify_title">Verify Certificate</strong>
+          <span data-trn="actions.verify_desc">Verify your membership certificate instantly.</span>
+        </div>
+        <svg class="svg-icon quick-arrow red-arrow" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+      </a>
+
+      <a href="#" class="quick-action">
+        <div class="quick-icon green-soft"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-graduation-cap"></use></svg></div>
+        <div>
+          <strong data-trn="actions.assess_title">Take Assessment</strong>
+          <span data-trn="actions.assess_desc">Test your knowledge and grow every day.</span>
+        </div>
+        <svg class="svg-icon quick-arrow green-arrow" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+      </a>
+
+      <a href="#" class="quick-action">
+        <div class="quick-icon red-soft"><svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg></div>
+        <div>
+          <strong data-trn="actions.events_title">Upcoming Events</strong>
+          <span data-trn="actions.events_desc">Check out our upcoming programs and events.</span>
+        </div>
+        <svg class="svg-icon quick-arrow red-arrow" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+      </a>
+    </section>
+  </main>
+
+  <!-- Leaders' Thoughts -->
+  <section class="leaders-section">
+    <div class="section-top">
+      <div class="section-top-left">
+        <p class="lv-kicker" data-trn="leaders.kicker">LEADERS' THOUGHTS</p>
+        <h2 class="lv-heading" data-trn="leaders.heading">Insights from <strong>Leaders.</strong></h2>
+        <p class="lv-sub" data-trn="leaders.sub">Perspectives, reflections, and visions from leaders shaping Nepal's democratic future.</p>
+      </div>
+      <a href="#" class="view-all-outline-btn">
+        <span data-trn="btn.view_all_articles">View All Articles</span>
+        <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+      </a>
+    </div>
+
+    <div class="leaders-grid">
+      <article class="leader-card">
+        <div class="leader-photo lp-1">
+          <span class="quote-bubble" aria-hidden="true">&#8220;</span>
+        </div>
+        <div class="leader-body">
+          <div class="leader-meta">
+            <strong class="leader-name" data-trn="leaders.leader1.name">Gagan Thapa</strong>
+            <span class="leader-title" data-trn="leaders.leader1.title">President, Nepali Congress</span>
+            <div class="leader-divider"></div>
+          </div>
+          <h3 data-trn="leaders.leader1.heading">Democracy Must Be Lived, Not Just Celebrated</h3>
+          <p data-trn="leaders.leader1.quote">As we mark another year of our republic, I am reminded that democracy is not a destination but a daily practice. It requires each citizen to actively...</p>
+          <div class="leader-footer">
+            <span class="read-time"><svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span data-trn="leaders.leader1.read">2 min read</span></span>
+            <a href="#" class="read-more-link"><span data-trn="btn.read_more">Read More</span> <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="leader-card">
+        <div class="leader-photo lp-2">
+          <span class="quote-bubble" aria-hidden="true">&#8220;</span>
+        </div>
+        <div class="leader-body">
+          <div class="leader-meta">
+            <strong class="leader-name" data-trn="leaders.leader2.name">Sher Bahadur Deuba</strong>
+            <span class="leader-title" data-trn="leaders.leader2.title">Former President, NC</span>
+            <div class="leader-divider"></div>
+          </div>
+          <h3 data-trn="leaders.leader2.heading">Building Prosperous Nepal Through Federal Democracy</h3>
+          <p data-trn="leaders.leader2.quote">Federalism is not just an administrative arrangement — it is our commitment to inclusive development that reaches every citizen in every corner of Nepal.</p>
+          <div class="leader-footer">
+            <span class="read-time"><svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span data-trn="leaders.leader2.read">3 min read</span></span>
+            <a href="#" class="read-more-link"><span data-trn="btn.read_more">Read More</span> <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="leader-card">
+        <div class="leader-photo lp-3">
+          <span class="quote-bubble" aria-hidden="true">&#8220;</span>
+        </div>
+        <div class="leader-body">
+          <div class="leader-meta">
+            <strong class="leader-name" data-trn="leaders.leader3.name">Prakash Man Singh</strong>
+            <span class="leader-title" data-trn="leaders.leader3.title">Senior Leader, NC</span>
+            <div class="leader-divider"></div>
+          </div>
+          <h3 data-trn="leaders.leader3.heading">Youth Are the Backbone of Our Democratic Movement</h3>
+          <p data-trn="leaders.leader3.quote">When I see thousands of young Nepali joining our party and engaging in politics, I see the future of our democracy. Their energy and vision will shape tomorrow.</p>
+          <div class="leader-footer">
+            <span class="read-time"><svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span data-trn="leaders.leader3.read">2 min read</span></span>
+            <a href="#" class="read-more-link"><span data-trn="btn.read_more">Read More</span> <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="leader-card">
+        <div class="leader-photo lp-4">
+          <span class="quote-bubble" aria-hidden="true">&#8220;</span>
+        </div>
+        <div class="leader-body">
+          <div class="leader-meta">
+            <strong class="leader-name" data-trn="leaders.leader4.name">Bimalendra Nidhi</strong>
+            <span class="leader-title" data-trn="leaders.leader4.title">Vice President, NC</span>
+            <div class="leader-divider"></div>
+          </div>
+          <h3 data-trn="leaders.leader4.heading">Strengthening Grassroots Institutions for Real Federalism</h3>
+          <p data-trn="leaders.leader4.quote">True federalism lives at the ward level, not in Singha Durbar. Our work now is to empower local governments with the resources and authority they deserve.</p>
+          <div class="leader-footer">
+            <span class="read-time"><svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span data-trn="leaders.leader4.read">2 min read</span></span>
+            <a href="#" class="read-more-link"><span data-trn="btn.read_more">Read More</span> <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Video News -->
+  <section class="videos-section">
+    <div class="section-top">
+      <div class="section-top-left">
+        <p class="lv-kicker" data-trn="videos.kicker">VIDEO NEWS</p>
+        <h2 class="lv-heading" data-trn="videos.heading">Watch. Learn. <strong>Stay Informed.</strong></h2>
+        <p class="lv-sub" data-trn="videos.sub">Short video clips on key issues, events, and updates.</p>
+      </div>
+      <a href="#" class="view-all-filled-btn">
+        <span data-trn="btn.view_all_videos">View All Videos</span>
+        <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+      </a>
+    </div>
+
+    <div class="videos-grid">
+      <article class="video-news-card">
+        <div class="video-thumb vt-1">
+          <img src="pics/videothum1.jpg" alt="BP Koirala's Democratic Philosophy thumbnail" width="400" height="225" loading="lazy">
+          <button class="play-btn-circle" aria-label="Play video">
+            <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false"><use href="#icon-play-fill"></use></svg>
+          </button>
+          <div class="video-meta-bar">
+            <span class="video-duration"><svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span data-trn="videos.card1_dur">25m</span></span>
+            <span class="watch-badge" data-trn="videos.watch">Watch</span>
+          </div>
+        </div>
+        <h3 data-trn="videos.card1_title">BP Koirala's Democratic Philosophy</h3>
+        <p data-trn="videos.card1_desc">Explore the democratic vision and legacy of BP Koirala and its relevance today.</p>
+      </article>
+
+      <article class="video-news-card">
+        <div class="video-thumb vt-2">
+          <img src="pics/videothum2.jpg" alt="Understanding Nepal's Federal Structure thumbnail" width="400" height="225" loading="lazy">
+          <button class="play-btn-circle" aria-label="Play video">
+            <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false"><use href="#icon-play-fill"></use></svg>
+          </button>
+          <div class="video-meta-bar">
+            <span class="video-duration"><svg class="svg-icon small-icon" aria-hidden="true" focus0able="false"><use href="#icon-clock"></use></svg> <span data-trn="videos.card2_dur">35m</span></span>
+            <span class="watch-badge" data-trn="videos.watch">Watch</span>
+          </div>
+        </div>
+        <h3 data-trn="videos.card2_title">Understanding Nepal's Federal Structure</h3>
+        <p data-trn="videos.card2_desc">A brief overview of federalism and its implementation in Nepal.</p>
+      </article>
+
+      <article class="video-news-card">
+        <div class="video-thumb vt-3">
+          <img src="pics/videothum3.jpg" alt="Election Laws and Electoral Process thumbnail" width="400" height="225" loading="lazy">
+          <button class="play-btn-circle" aria-label="Play video">
+            <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false"><use href="#icon-play-fill"></use></svg>
+          </button>
+          <div class="video-meta-bar">
+            <span class="video-duration"><svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span data-trn="videos.card3_dur">40m</span></span>
+            <span class="watch-badge" data-trn="videos.watch">Watch</span>
+          </div>
+        </div>
+        <h3 data-trn="videos.card3_title">Election Laws and Electoral Process in Nepal</h3>
+        <p data-trn="videos.card3_desc">How elections work in Nepal and the laws that govern them.</p>
+      </article>
+
+      <article class="video-news-card">
+        <div class="video-thumb vt-4">
+          <img src="pics/videothum4.jpg" alt="Leadership and Governance thumbnail" width="400" height="225" loading="lazy">
+          <button class="play-btn-circle" aria-label="Play video">
+            <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false"><use href="#icon-play-fill"></use></svg>
+          </button>
+          <div class="video-meta-bar">
+            <span class="video-duration"><svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg> <span data-trn="videos.card4_dur">30m</span></span>
+            <span class="watch-badge" data-trn="videos.watch">Watch</span>
+          </div>
+        </div>
+        <h3 data-trn="videos.card4_title">Leadership and Governance: Effective Political Leadership</h3>
+        <p data-trn="videos.card4_desc">Key principles of effective leadership in politics and governance.</p>
+      </article>
+
+      <div class="explore-more-card">
+        <div class="play-outline-circle">
+          <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false"><use href="#icon-play-fill"></use></svg>
+        </div>
+        <h3 data-trn="videos.explore_title">Explore More Videos</h3>
+        <p data-trn="videos.explore_desc">Browse our full video library and stay informed.</p>
+        <a href="#" class="view-all-filled-btn">
+          <span data-trn="btn.view_all_videos">View All Videos</span>
+          <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Podcast Section -->
+  <section class="podcast-section" aria-label="Podcasts">
+    <div class="section-top">
+      <div class="section-top-left">
+        <p class="lv-kicker" data-trn="podcast.kicker">PODCASTS</p>
+        <h2 class="lv-heading" data-trn="podcast.heading">Listen to <strong>Voice of Democracy.</strong></h2>
+        <p class="lv-sub" data-trn="podcast.sub">Deep-dive discussions on policy, history, and development in Nepal.</p>
+      </div>
+    </div>
+
+    <div class="podcast-grid">
+      <!-- Left: Featured Latest Episode -->
+      <article class="featured-podcast-card">
+        <div class="podcast-cover">
+          <img src="pics/1stthumnai-browser.jpg" alt="Featured Podcast Cover" loading="lazy">
+          <div class="mic-overlay">
+            <svg class="svg-icon" aria-hidden="true" focusable="false" style="width: 14px; height: 14px; stroke: #fff;"><use href="#icon-podcast"></use></svg>
+            <span data-trn="podcast.audio_only">Audio Only</span>
+          </div>
+        </div>
+        <div class="podcast-body">
+          <span class="badge red-badge" data-trn="podcast.badge_latest">LATEST EPISODE</span>
+          <h3 data-trn="podcast.feat_title">The Vision of BP Koirala in the 21st Century</h3>
+          <div class="podcast-meta" data-trn="podcast.feat_meta">Host: Gagan Thapa | Guest: Prof. Dr. Lok Raj Baral</div>
+          <p class="podcast-desc" data-trn="podcast.feat_desc">An in-depth analysis of democratic socialism and its practical application in Nepal's modern economic landscape.</p>
+          
+          <!-- Sleek Mock Audio Player -->
+          <div class="audio-player">
+            <button class="play-circle-btn" aria-label="Play/Pause Podcast" id="podcast-play-toggle">
+              <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false" style="width: 18px; height: 18px;" id="podcast-play-icon"><use href="#icon-play-fill"></use></svg>
+            </button>
+            <div class="audio-progress-container">
+              <div class="audio-progress-bar">
+                <div class="audio-progress" style="width: 35%;"></div>
+              </div>
+              <div class="audio-track-time">
+                <span id="podcast-time-elapsed" data-trn="podcast.feat_elapsed">15:45</span>
+                <span id="podcast-time-total" data-trn="podcast.feat_duration">45:12</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Right: Recent Podcast List -->
+      <div class="recent-podcast-list">
+        <!-- Item 1 -->
+        <div class="podcast-list-item">
+          <div class="podcast-thumb">
+            <svg class="svg-icon" aria-hidden="true" focusable="false" style="stroke-width: 2.2;"><use href="#icon-podcast"></use></svg>
+          </div>
+          <div class="podcast-item-info">
+            <h4 data-trn="podcast.list_item1_title">Federalism: Decadence or Development?</h4>
+            <div class="podcast-item-meta">
+              <span data-trn="podcast.list_item1_date">June 10, 2026</span>
+              <span>•</span>
+              <span data-trn="podcast.list_item1_dur">32m</span>
+            </div>
+          </div>
+          <button class="podcast-play-btn" aria-label="Play Episode">
+            <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false" style="width: 14px; height: 14px;"><use href="#icon-play-fill"></use></svg>
+          </button>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="podcast-list-item">
+          <div class="podcast-thumb" style="background: var(--soft-green); color: var(--green);">
+            <svg class="svg-icon" aria-hidden="true" focusable="false" style="stroke-width: 2.2;"><use href="#icon-podcast"></use></svg>
+          </div>
+          <div class="podcast-item-info">
+            <h4 data-trn="podcast.list_item2_title">Youth Engagement in Democratic Institutions</h4>
+            <div class="podcast-item-meta">
+              <span data-trn="podcast.list_item2_date">June 5, 2026</span>
+              <span>•</span>
+              <span data-trn="podcast.list_item2_dur">28m</span>
+            </div>
+          </div>
+          <button class="podcast-play-btn" aria-label="Play Episode">
+            <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false" style="width: 14px; height: 14px;"><use href="#icon-play-fill"></use></svg>
+          </button>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="podcast-list-item">
+          <div class="podcast-thumb">
+            <svg class="svg-icon" aria-hidden="true" focusable="false" style="stroke-width: 2.2;"><use href="#icon-podcast"></use></svg>
+          </div>
+          <div class="podcast-item-info">
+            <h4 data-trn="podcast.list_item3_title">Economic Policy for Inclusive Growth</h4>
+            <div class="podcast-item-meta">
+              <span data-trn="podcast.list_item3_date">May 28, 2026</span>
+              <span>•</span>
+              <span data-trn="podcast.list_item3_dur">38m</span>
+            </div>
+          </div>
+          <button class="podcast-play-btn" aria-label="Play Episode">
+            <svg class="svg-icon play-fill-icon" aria-hidden="true" focusable="false" style="width: 14px; height: 14px;"><use href="#icon-play-fill"></use></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="news-preview-section" aria-labelledby="top-stories-heading">
+    <div class="top-stories-panel">
+      <div class="news-panel-header">
+        <h2 id="top-stories-heading" data-trn="news.heading">Top Stories</h2>
+        <a href="#" class="news-view-link">
+          <span data-trn="news.view_all">View All Articles</span>
+          <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+        </a>
+      </div>
+
+      <div class="top-stories-grid">
+        <article class="top-story-card">
+          <img src="pics/gaganthapa.jpg" alt="Gagan Thapa speaking at Nepali Congress event" width="400" height="260" loading="lazy">
+          <div class="top-story-body">
+            <span class="story-label party" data-trn="news.label_party">Party News</span>
+            <h3 data-trn="news.story1.title">Gagan Thapa Calls for National Unity Ahead of Historic Provincial By-Elections</h3>
+            <p data-trn="news.story1.desc">NC President Sher Bahadur Deuba addressed a 50,000-strong gathering in Kathmandu, urging all democratic forces...</p>
+            <div class="story-meta">
+              <time datetime="2026-06-04">
+                <svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg>
+                <span data-trn="news.story1.date">June 4, 2026</span>
+              </time>
+              <span data-trn="news.story1.read">5 min read</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="top-story-card">
+          <img src="pics/third-browser.jpg" alt="Party leader addressing a coalition partners meeting" width="400" height="260" loading="lazy">
+          <div class="top-story-body">
+            <span class="story-label party" data-trn="news.label_party">Party News</span>
+            <h3 data-trn="news.story2.title">Gagan Thapa meets coalition partners to discuss government priorities</h3>
+            <p data-trn="news.story2.desc">NC President Deuba held a key meeting with Maoist leadership to discuss the long-term stability and governance...</p>
+            <div class="story-meta">
+              <time datetime="2026-06-04">
+                <svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg>
+                <span data-trn="news.story2.date">June 4, 2026</span>
+              </time>
+              <span data-trn="news.story2.read">4 min read</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="top-story-card">
+          <img src="pics/forththum-browser.jpg" alt="Nepali Congress working committee discussion" width="400" height="260" loading="lazy">
+          <div class="top-story-body">
+            <span class="story-label organization" data-trn="news.label_org">Organization</span>
+            <h3 data-trn="news.story3.title">Central Working Committee discusses organizational strengthening drive</h3>
+            <p data-trn="news.story3.desc">The meeting focused on expanding party presence at the grassroots and preparing for future political challenges.</p>
+            <div class="story-meta">
+              <time datetime="2026-06-03">
+                <svg class="svg-icon small-icon" aria-hidden="true" focusable="false"><use href="#icon-calendar"></use></svg>
+                <span data-trn="news.story3.date">June 3, 2026</span>
+              </time>
+              <span data-trn="news.story3.read">6 min read</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <aside class="glance-panel" aria-labelledby="glance-heading">
+      <h2 id="glance-heading" data-trn="glance.heading">At A Glance</h2>
+      <div class="glance-list">
+        <a href="#" class="glance-item">
+          <span class="glance-icon">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg>
+          </span>
+          <span class="glance-copy">
+            <strong data-trn="glance.item1.title">Our Leadership</strong>
+            <span data-trn="glance.item1.desc">Meet the leaders guiding the party with vision and commitment.</span>
+          </span>
+          <svg class="svg-icon chevron-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+        </a>
+
+        <a href="#" class="glance-item">
+          <span class="glance-icon">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-book-open"></use></svg>
+          </span>
+          <span class="glance-copy">
+            <strong data-trn="glance.item2.title">Our History</strong>
+            <span data-trn="glance.item2.desc">Explore the rich legacy and journey of Nepali Congress.</span>
+          </span>
+          <svg class="svg-icon chevron-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+        </a>
+
+        <a href="#" class="glance-item">
+          <span class="glance-icon">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-target"></use></svg>
+          </span>
+          <span class="glance-copy">
+            <strong data-trn="glance.item3.title">Our Vision</strong>
+            <span data-trn="glance.item3.desc">Building a democratic, inclusive and prosperous Nepal.</span>
+          </span>
+          <svg class="svg-icon chevron-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+        </a>
+
+        <a href="#" class="glance-item">
+          <span class="glance-icon">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-hand-heart"></use></svg>
+          </span>
+          <span class="glance-copy">
+            <strong data-trn="glance.item4.title">Get Involved</strong>
+            <span data-trn="glance.item4.desc">Join hands with us and be a part of the change.</span>
+          </span>
+          <svg class="svg-icon chevron-icon" aria-hidden="true" focusable="false"><use href="#icon-chevron-right"></use></svg>
+        </a>
+      </div>
+    </aside>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-left">
+      <img class="cta-flag" src="pics/Nepali-Congress-Flag-browser.jpg" alt="Nepali Congress flag">
+      <div class="cta-copy">
+        <h2 data-trn="cta.heading">Be a Part of the <span class="cta-accent">Change</span></h2>
+        <p data-trn="cta.desc">Join thousands of Nepalese working, growing, and working together for a better Nepal.</p>
+      </div>
+    </div>
+    <div class="cta-actions">
+      <a href="#" class="cta-primary-btn">
+        <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-users"></use></svg>
+        <span data-trn="cta.join">Join Nepali Congress</span>
+        <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-right"></use></svg>
+      </a>
+      <a href="#" class="cta-outline-btn" data-trn="cta.explore">Explore Resources</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">
+          <img src="pics/Nepali-Congress-Flag-browser.jpg" alt="Nepali Congress flag" class="footer-flag">
+          <div>
+            <div class="footer-brand-title" data-trn="brand.footer_title">नेपाली कांग्रेस</div>
+            <div class="footer-brand-subtitle" data-trn="brand.footer_subtitle">Official Website of Nepali Congress</div>
+          </div>
+        </a>
+        <p class="footer-desc" data-trn="footer.desc">Empowering the nation with inclusive politics, social initiatives &amp; building a prosperous, democratic Nepal.</p>
+        <div class="social-icons">
+          <a href="#" class="social-btn" aria-label="Facebook" data-trn="footer.facebook">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-facebook"></use></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Twitter" data-trn="footer.twitter">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-twitter"></use></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram" data-trn="footer.instagram">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="YouTube" data-trn="footer.youtube">
+            <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-youtube"></use></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Quick links">
+        <h4 data-trn="footer.title_links">Quick Links</h4>
+        <ul>
+          <li><a href="#" data-trn="nav.home">Home</a></li>
+          <li><a href="#" data-trn="nav.about">About</a></li>
+          <li><a href="#" data-trn="nav.videos">Videos</a></li>
+          <li><a href="#" data-trn="nav.calendar">Calendar</a></li>
+          <li><a href="#" data-trn="nav.documents">Documents</a></li>
+          <li><a href="#">Press/Media</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-nav" aria-label="Resources">
+        <h4 data-trn="footer.title_resources">Resources</h4>
+        <ul>
+          <li><a href="#">Learning Videos</a></li>
+          <li><a href="#">Guidelines</a></li>
+          <li><a href="#">Membership Info</a></li>
+          <li><a href="#">Downloads</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-nav" aria-label="Support">
+        <h4 data-trn="footer.title_support">Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-newsletter">
+        <h4 data-trn="footer.title_newsletter">Subscribe to Newsletter</h4>
+        <p data-trn="footer.desc_newsletter">Stay informed with updates on news, events and more.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email" aria-label="Email address" data-trn="footer.input_newsletter">
+          <button type="submit" data-trn="footer.btn_subscribe">Subscribe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span data-trn="footer.copyright">© 2025 Nepali Congress. All Rights Reserved.</span>
+      <span data-trn="footer.made_in">Made with <span class="heart">❤</span> in Nepal</span>
+    </div>
+  </footer>
+</body>
+</html>
