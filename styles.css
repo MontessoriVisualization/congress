@@ -3,15 +3,28 @@
   --green-dark: #003d22;
   --green-deep: #002f1d;
   --red: #df151f;
+  --gold: #c79a3a;
   --text: #101010;
   --muted: #5a5f63;
   --line: #e6e9e7;
   --surface: #ffffff;
   --soft-green: #eaf7f0;
   --soft-red: #fdebed;
+
+  /* Layered, directional shadows for real depth */
+  --shadow-sm: 0 1px 2px rgba(12, 26, 20, 0.06), 0 2px 6px rgba(12, 26, 20, 0.05);
   --shadow: 0 16px 36px rgba(12, 26, 20, 0.12);
-  --font-display: "Segoe UI Variable Display", "Segoe UI Variable Text", "Segoe UI", sans-serif;
-  --font-body: "Segoe UI Variable Text", "Segoe UI", sans-serif;
+  --shadow-lg: 0 8px 16px rgba(12, 26, 20, 0.08),
+    0 28px 56px rgba(12, 26, 20, 0.16);
+  --shadow-green: 0 16px 32px rgba(8, 121, 64, 0.22);
+  --shadow-red: 0 16px 32px rgba(223, 21, 31, 0.22);
+
+  /* Editorial display serif + humanist body; Mukta carries Devanagari glyphs */
+  --font-display: "Fraunces", "Mukta", Georgia, "Times New Roman", serif;
+  --font-body: "Libre Franklin", "Mukta", system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 * {
@@ -21,8 +34,35 @@
 body {
   margin: 0;
   font-family: var(--font-body);
+  font-optical-sizing: auto;
   color: var(--text);
-  background: #fbfcfb;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  /* Soft civic atmosphere: paper-warm base with faint green/red light pooling at the top */
+  background-color: #fbfcfb;
+  background-image: radial-gradient(
+      62vw 48vh at 12% -8%,
+      rgba(8, 121, 64, 0.07),
+      transparent 60%
+    ),
+    radial-gradient(
+      52vw 42vh at 96% 2%,
+      rgba(223, 21, 31, 0.055),
+      transparent 58%
+    );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Headings adopt the editorial serif with optical sizing + refined tracking */
+h1,
+h2,
+h3,
+.brand-title,
+.footer-brand-title {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
 }
 
 a {
@@ -2209,5 +2249,213 @@ button {
   .podcast-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+}
+
+/* ============================================================
+   Frontend-design layer — motion, depth & refined interactions
+   Aesthetic: refined editorial / civic gravitas.
+   All motion is opt-out via prefers-reduced-motion.
+   ============================================================ */
+
+/* --- Distinctive accent: hero display gets optical weight --- */
+.hero-copy h1 {
+  font-feature-settings: "ss01" 1;
+}
+.hero-copy h1 strong {
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* --- Above-the-fold entrance: orchestrated staggered reveal --- */
+@keyframes nc-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header,
+  .hero-copy > *,
+  .hero-art,
+  .stats {
+    animation: nc-rise 0.7s var(--ease-out) both;
+  }
+  .hero-copy > * {
+    animation-delay: calc(0.12s + var(--i, 0) * 0.08s);
+  }
+  .hero-copy .eyebrow {
+    --i: 0;
+  }
+  .hero-copy h1 {
+    --i: 1;
+  }
+  .hero-copy .red-mark {
+    --i: 2;
+  }
+  .hero-copy p {
+    --i: 3;
+  }
+  .hero-copy .hero-actions {
+    --i: 4;
+  }
+  .hero-copy .verify-link {
+    --i: 5;
+  }
+  .hero-art {
+    animation-delay: 0.28s;
+  }
+  .stats {
+    animation-delay: 0.5s;
+  }
+}
+
+/* --- Scroll-triggered reveals (pure CSS, progressively enhanced) ---
+   Gated behind @supports so unsupported browsers always show content. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .content-card,
+    .leader-card,
+    .video-news-card,
+    .top-story-card,
+    .quick-action,
+    .featured-podcast-card,
+    .podcast-list-item,
+    .glance-item,
+    .section-intro,
+    .section-top {
+      animation: nc-rise both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+  }
+}
+
+/* --- Refined hover depth & micro-interactions --- */
+.content-card,
+.leader-card,
+.video-news-card,
+.top-story-card,
+.quick-action {
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  will-change: transform;
+}
+.content-card:hover,
+.leader-card:hover,
+.video-news-card:hover,
+.top-story-card:hover,
+.quick-action:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Image cards get a subtle zoom within their frame */
+.card-image img,
+.video-thumb img,
+.top-story-card img {
+  transition: transform 0.6s var(--ease-out);
+}
+.content-card:hover .card-image img,
+.video-news-card:hover .video-thumb img,
+.top-story-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Buttons: tactile press + colored glow on the primary actions */
+.primary-btn,
+.outline-btn,
+.primary-link,
+.cta-primary-btn,
+.view-all-filled-btn {
+  transition: transform 0.18s var(--ease-spring), box-shadow 0.3s var(--ease-out),
+    background-color 0.2s ease, color 0.2s ease;
+}
+.primary-btn:hover,
+.cta-primary-btn:hover,
+.primary-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-red);
+}
+.outline-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-green);
+}
+.primary-btn:active,
+.outline-btn:active,
+.primary-link:active,
+.cta-primary-btn:active,
+.icon-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Arrows nudge forward on hover for clear affordance */
+.arrow-icon,
+.quick-arrow {
+  transition: transform 0.25s var(--ease-out);
+}
+a:hover > .arrow-icon,
+.primary-link:hover .arrow-icon,
+.dark-link:hover .arrow-icon,
+.read-more-link:hover .arrow-icon,
+.news-view-link:hover .arrow-icon,
+.quick-action:hover .quick-arrow {
+  transform: translateX(4px);
+}
+
+/* Animated nav underline */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 19px;
+  height: 3px;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
+}
+.main-nav a:hover::after {
+  transform: scaleX(1);
+}
+.main-nav a.active::after {
+  transform: scaleX(1);
+}
+
+/* --- Accessible focus states (visible, on-brand) --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2.5px solid var(--green);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --- Honour reduced-motion globally as a safety net --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Print: never let scroll-driven reveals hide content on paper --- */
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

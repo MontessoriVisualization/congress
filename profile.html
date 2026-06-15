@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bishnu Prasad Koirala · Nepali Congress</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..600&family=Libre+Franklin:wght@400;500;600;700&family=Mukta:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="profile.css" />
+  </head>
+  <body>
+    <!-- Icon sprite -->
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-4-4"></path>
+      </symbol>
+      <symbol id="icon-globe" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="2" y1="12" x2="22" y2="12"></line>
+        <path
+          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+        ></path>
+      </symbol>
+      <symbol id="icon-user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4"></circle>
+        <path d="M5 21a7 7 0 0 1 14 0"></path>
+      </symbol>
+      <symbol id="icon-users" viewBox="0 0 24 24">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9.5" cy="7" r="4"></circle>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </symbol>
+      <symbol id="icon-book-open" viewBox="0 0 24 24">
+        <path d="M12 7v14"></path>
+        <path
+          d="M3 5a7 7 0 0 1 9 2 7 7 0 0 1 9-2v14a7 7 0 0 0-9 2 7 7 0 0 0-9-2V5Z"
+        ></path>
+      </symbol>
+      <symbol id="icon-play-square" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+        <path d="m10 9 5 3-5 3V9Z"></path>
+      </symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24">
+        <path d="M8 2v4"></path>
+        <path d="M16 2v4"></path>
+        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+        <path d="M3 10h18"></path>
+      </symbol>
+      <symbol id="icon-graduation-cap" viewBox="0 0 24 24">
+        <path d="m22 10-10-5-10 5 10 5 10-5Z"></path>
+        <path d="M6 12v5c3 2 9 2 12 0v-5"></path>
+        <path d="M22 10v6"></path>
+      </symbol>
+      <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+        <path d="M5 12h14"></path>
+        <path d="m13 6 6 6-6 6"></path>
+      </symbol>
+      <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+        <path d="m9 18 6-6-6-6"></path>
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </symbol>
+      <symbol id="icon-play-fill" viewBox="0 0 24 24">
+        <path d="m9 6 10 6-10 6V6Z" fill="currentColor" stroke="none"></path>
+      </symbol>
+      <symbol id="icon-facebook" viewBox="0 0 24 24">
+        <path
+          d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+        ></path>
+      </symbol>
+      <symbol id="icon-twitter" viewBox="0 0 24 24">
+        <path
+          d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
+        ></path>
+      </symbol>
+      <symbol id="icon-instagram" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+      </symbol>
+      <symbol id="icon-youtube" viewBox="0 0 24 24">
+        <path
+          d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
+        ></path>
+        <polygon
+          points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
+          fill="currentColor"
+          stroke="none"
+        ></polygon>
+      </symbol>
+      <!-- Profile-specific icons -->
+      <symbol id="icon-map-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </symbol>
+      <symbol id="icon-check-badge" viewBox="0 0 24 24">
+        <path
+          d="M12 2 9.5 4.2 6.2 4l-1 3.2L2.5 9.5 4 12.5 2.5 15.5l2.7 2.3 1 3.2 3.3-.2L12 22l2.5-1.2 3.3.2 1-3.2 2.7-2.3-1.5-3 1.5-3-2.7-2.3-1-3.2-3.3.2Z"
+          fill="currentColor"
+          stroke="none"
+        ></path>
+        <path d="m8.5 12 2.3 2.3 4.7-4.8" stroke="#fff" stroke-width="2"></path>
+      </symbol>
+      <symbol id="icon-message" viewBox="0 0 24 24">
+        <path
+          d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"
+        ></path>
+      </symbol>
+      <symbol id="icon-more" viewBox="0 0 24 24">
+        <circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"></circle>
+        <circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"></circle>
+        <circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"></circle>
+      </symbol>
+      <symbol id="icon-camera" viewBox="0 0 24 24">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+        <circle cx="12" cy="13" r="4"></circle>
+      </symbol>
+      <symbol id="icon-activity" viewBox="0 0 24 24">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+      </symbol>
+      <symbol id="icon-bookmark" viewBox="0 0 24 24">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+      </symbol>
+      <symbol id="icon-award" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="6"></circle>
+        <path d="M8.5 13.5 7 22l5-3 5 3-1.5-8.5"></path>
+      </symbol>
+      <symbol id="icon-settings" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </symbol>
+      <symbol id="icon-shield" viewBox="0 0 24 24">
+        <path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path>
+      </symbol>
+      <symbol id="icon-id" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+        <circle cx="9" cy="11" r="2"></circle>
+        <path d="M6 16a3 3 0 0 1 6 0"></path>
+        <line x1="14" y1="10" x2="18" y2="10"></line>
+        <line x1="14" y1="14" x2="18" y2="14"></line>
+      </symbol>
+    </svg>
+
+    <!-- ============ HEADER (shared) ============ -->
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Nepali Congress home">
+        <img
+          class="brand-flag"
+          src="pics/Nepali-Congress-Flag-browser.jpg"
+          alt="Nepali Congress flag"
+          width="900"
+          height="506"
+          loading="eager"
+        />
+        <div>
+          <div class="brand-title">नेपाली कांग्रेस</div>
+          <div class="brand-subtitle">Digital Learning &amp; Assessment Platform</div>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="#">Articles</a>
+        <a href="#">Videos</a>
+        <a href="#">Calendar</a>
+        <a href="#">Documents</a>
+        <a href="#">About Us</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg class="svg-icon" aria-hidden="true" focusable="false">
+            <use href="#icon-search"></use>
+          </svg>
+        </button>
+
+        <div class="lang-switcher">
+          <button
+            class="lang-btn"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-label="Select Language"
+          >
+            <svg class="svg-icon lang-icon" aria-hidden="true" focusable="false">
+              <use href="#icon-globe"></use>
+            </svg>
+            <span class="lang-label">English</span>
+            <svg class="svg-icon chevron-icon" aria-hidden="true" focusable="false">
+              <use href="#icon-chevron-right"></use>
+            </svg>
+          </button>
+        </div>
+
+        <button class="outline-btn">
+          <svg class="svg-icon" aria-hidden="true" focusable="false">
+            <use href="#icon-user"></use>
+          </svg>
+          <span>Log In</span>
+        </button>
+        <button class="primary-btn">
+          <svg class="svg-icon" aria-hidden="true" focusable="false">
+            <use href="#icon-users"></use>
+          </svg>
+          <span>Join Now</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ============ PROFILE ============ -->
+    <main class="profile-shell">
+      <!-- Banner -->
+      <section class="profile-banner">
+        <div class="profile-cover">
+          <img
+            src="pics/hero-browser.webp"
+            alt="Mountains and Nepali Congress flag"
+            loading="eager"
+          />
+        </div>
+
+        <div class="profile-header-body">
+          <div class="profile-avatar-wrap">
+            <!-- Placeholder portrait (no Bishnu Prasad Koirala photo in pics/) -->
+            <img
+              class="profile-avatar"
+              src="pics/prakash.png"
+              alt="Bishnu Prasad Koirala"
+            />
+            <button class="avatar-cam" aria-label="Change photo">
+              <svg class="svg-icon" aria-hidden="true" focusable="false">
+                <use href="#icon-camera"></use>
+              </svg>
+            </button>
+          </div>
+
+          <div class="profile-identity">
+            <h1 class="profile-name">
+              Bishnu Prasad Koirala
+              <svg class="verified-badge" aria-label="Verified" role="img">
+                <use href="#icon-check-badge"></use>
+              </svg>
+            </h1>
+            <p class="profile-role">Senior Leader, Nepali Congress</p>
+            <p class="profile-subrole">Former Prime Minister of Nepal</p>
+
+            <p class="profile-location">
+              <svg class="svg-icon sm" aria-hidden="true" focusable="false">
+                <use href="#icon-map-pin"></use>
+              </svg>
+              Kathmandu, Nepal
+            </p>
+
+            <ul class="profile-stats">
+              <li><strong>48.2K</strong><span>Followers</span></li>
+              <li><strong>312</strong><span>Following</span></li>
+              <li><strong>184</strong><span>Articles</span></li>
+              <li><strong>96</strong><span>Videos</span></li>
+            </ul>
+
+            <div class="profile-socials">
+              <a href="#" aria-label="Website">
+                <svg class="svg-icon" aria-hidden="true"><use href="#icon-globe"></use></svg>
+              </a>
+              <a href="#" aria-label="Facebook">
+                <svg class="svg-icon" aria-hidden="true"><use href="#icon-facebook"></use></svg>
+              </a>
+              <a href="#" aria-label="Twitter">
+                <svg class="svg-icon" aria-hidden="true"><use href="#icon-twitter"></use></svg>
+              </a>
+              <a href="#" aria-label="YouTube">
+                <svg class="svg-icon" aria-hidden="true"><use href="#icon-youtube"></use></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="profile-actions">
+            <button class="follow-btn">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+              <span>Follow</span>
+            </button>
+            <button class="outline-btn">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-message"></use></svg>
+              <span>Message</span>
+            </button>
+            <button class="icon-btn ellipsis-btn" aria-label="More options">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-more"></use></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3-column grid -->
+      <div class="profile-grid">
+        <!-- LEFT SIDEBAR -->
+        <aside class="profile-col-left">
+          <nav class="profile-menu" aria-label="Profile sections">
+            <a class="profile-menu-item active" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-user"></use></svg>
+              <span>My Profile</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-activity"></use></svg>
+              <span>My Activity</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-book-open"></use></svg>
+              <span>My Articles</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-play-square"></use></svg>
+              <span>My Videos</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-bookmark"></use></svg>
+              <span>Saved Items</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+              <span>Events Registered</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-users"></use></svg>
+              <span>My Groups</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-award"></use></svg>
+              <span>My Certificates</span>
+            </a>
+            <a class="profile-menu-item" href="#">
+              <svg class="svg-icon" aria-hidden="true"><use href="#icon-settings"></use></svg>
+              <span>Settings</span>
+            </a>
+          </nav>
+
+          <div class="side-card">
+            <h3 class="side-card-title">Groups You Manage</h3>
+            <ul class="groups-managed">
+              <li>
+                <img src="pics/videothum1.jpg" alt="" />
+                <div>
+                  <span class="gm-name">Youth Circle</span>
+                  <span class="gm-meta">1.2K Members</span>
+                </div>
+              </li>
+              <li>
+                <img src="pics/gaganthapa.jpg" alt="" />
+                <div>
+                  <span class="gm-name">Policy &amp; Research</span>
+                  <span class="gm-meta">862 Members</span>
+                </div>
+              </li>
+              <li>
+                <img src="pics/videothum3.jpg" alt="" />
+                <div>
+                  <span class="gm-name">Democracy Forum</span>
+                  <span class="gm-meta">1.8K Members</span>
+                </div>
+              </li>
+            </ul>
+            <a class="view-all-link" href="#">
+              View All Groups
+              <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+          </div>
+        </aside>
+
+        <!-- CENTER -->
+        <div class="profile-col-center">
+          <div class="profile-tabs" role="tablist">
+            <button class="profile-tab active" role="tab" aria-selected="true">Overview</button>
+            <button class="profile-tab" role="tab" aria-selected="false">Articles</button>
+            <button class="profile-tab" role="tab" aria-selected="false">Videos</button>
+            <button class="profile-tab" role="tab" aria-selected="false">Events</button>
+            <button class="profile-tab" role="tab" aria-selected="false">Documents</button>
+            <button class="profile-tab" role="tab" aria-selected="false">Activity</button>
+          </div>
+
+          <!-- About -->
+          <section class="panel about-panel">
+            <h2 class="panel-title">About</h2>
+            <p class="about-text">
+              Bishnu Prasad Koirala was a visionary leader and the first
+              democratically elected Prime Minister of Nepal. He dedicated his
+              life to democracy, social justice, and the welfare of the Nepali
+              people.
+            </p>
+            <dl class="about-meta">
+              <div class="meta-row">
+                <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                <dt>Member Since</dt>
+                <dd>Jan 12, 2006</dd>
+              </div>
+              <div class="meta-row">
+                <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-id"></use></svg>
+                <dt>Role</dt>
+                <dd>Senior Leader</dd>
+              </div>
+              <div class="meta-row">
+                <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-shield"></use></svg>
+                <dt>Party</dt>
+                <dd>Nepali Congress</dd>
+              </div>
+              <div class="meta-row">
+                <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-graduation-cap"></use></svg>
+                <dt>Education</dt>
+                <dd>Master's in Political Science</dd>
+              </div>
+              <div class="meta-row">
+                <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-globe"></use></svg>
+                <dt>Website</dt>
+                <dd><a href="#" class="meta-link">bpk.org.np</a></dd>
+              </div>
+            </dl>
+            <a class="view-all-link" href="#">
+              View Full Bio
+              <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+          </section>
+
+          <!-- Recent Articles -->
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">Recent Articles</h2>
+              <a class="view-all-link" href="#">
+                View All Articles
+                <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+            <div class="card-row">
+              <article class="content-card">
+                <div class="card-image">
+                  <img src="pics/1stthumnai-browser.jpg" alt="" />
+                  <span class="badge green-badge">OPINION</span>
+                </div>
+                <div class="card-body">
+                  <h3>The Path to Democratic Nepal</h3>
+                  <time>
+                    <svg class="svg-icon small-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                    May 10, 2024
+                    <span class="dot">·</span> 5 min read
+                  </time>
+                </div>
+              </article>
+              <article class="content-card">
+                <div class="card-image">
+                  <img src="pics/third-webp.webp" alt="" />
+                  <span class="badge red-badge">FEATURED</span>
+                </div>
+                <div class="card-body">
+                  <h3>Federalism: A Way Forward</h3>
+                  <time>
+                    <svg class="svg-icon small-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                    May 5, 2024
+                    <span class="dot">·</span> 7 min read
+                  </time>
+                </div>
+              </article>
+              <article class="content-card">
+                <div class="card-image">
+                  <img src="pics/forththum-webp.webp" alt="" />
+                  <span class="badge green-badge">OPINION</span>
+                </div>
+                <div class="card-body">
+                  <h3>Good Governance and People's Participation</h3>
+                  <time>
+                    <svg class="svg-icon small-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                    Apr 20, 2024
+                    <span class="dot">·</span> 6 min read
+                  </time>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Latest Videos -->
+          <section class="panel">
+            <div class="panel-head">
+              <h2 class="panel-title">Latest Videos</h2>
+              <a class="view-all-link" href="#">
+                View All Videos
+                <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+              </a>
+            </div>
+            <div class="card-row">
+              <article class="content-card video-card">
+                <div class="card-image">
+                  <img src="pics/videothum1.jpg" alt="" />
+                  <span class="video-duration">08:45</span>
+                  <span class="play-overlay">
+                    <svg class="svg-icon" aria-hidden="true"><use href="#icon-play-fill"></use></svg>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Democracy and Development in Nepal</h3>
+                  <time>
+                    <svg class="svg-icon small-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                    May 10, 2024
+                  </time>
+                </div>
+              </article>
+              <article class="content-card video-card">
+                <div class="card-image">
+                  <img src="pics/videothum2.jpg" alt="" />
+                  <span class="video-duration">12:30</span>
+                  <span class="play-overlay">
+                    <svg class="svg-icon" aria-hidden="true"><use href="#icon-play-fill"></use></svg>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Youth and Leadership</h3>
+                  <time>
+                    <svg class="svg-icon small-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                    Apr 30, 2024
+                  </time>
+                </div>
+              </article>
+              <article class="content-card video-card">
+                <div class="card-image">
+                  <img src="pics/videothum4.jpg" alt="" />
+                  <span class="video-duration">06:15</span>
+                  <span class="play-overlay">
+                    <svg class="svg-icon" aria-hidden="true"><use href="#icon-play-fill"></use></svg>
+                  </span>
+                </div>
+                <div class="card-body">
+                  <h3>Our Vision for a Prosperous Nepal</h3>
+                  <time>
+                    <svg class="svg-icon small-icon" aria-hidden="true"><use href="#icon-calendar"></use></svg>
+                    Apr 22, 2024
+                  </time>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- Activity Feed -->
+          <section class="panel">
+            <h2 class="panel-title">Activity Feed</h2>
+            <ul class="activity-feed">
+              <li class="activity-row">
+                <span class="activity-avatar">
+                  <svg class="svg-icon" aria-hidden="true"><use href="#icon-book-open"></use></svg>
+                </span>
+                <div class="activity-body">
+                  <p class="activity-meta">Bishnu Prasad Koirala published a new article</p>
+                  <p class="activity-title">Inclusive Democracy: The Need of Today</p>
+                  <time class="activity-date">May 10, 2024</time>
+                </div>
+              </li>
+              <li class="activity-row">
+                <span class="activity-avatar red">
+                  <svg class="svg-icon" aria-hidden="true"><use href="#icon-play-fill"></use></svg>
+                </span>
+                <div class="activity-body">
+                  <p class="activity-meta">Bishnu Prasad Koirala uploaded a new video</p>
+                  <p class="activity-title">Constitution Day Program</p>
+                  <time class="activity-date">May 5, 2024</time>
+                </div>
+              </li>
+              <li class="activity-row">
+                <span class="activity-avatar">
+                  <svg class="svg-icon" aria-hidden="true"><use href="#icon-award"></use></svg>
+                </span>
+                <div class="activity-body">
+                  <p class="activity-meta">Bishnu Prasad Koirala earned a certificate</p>
+                  <p class="activity-title">Certificate in Democratic Leadership</p>
+                  <time class="activity-date">May 1, 2024</time>
+                </div>
+              </li>
+            </ul>
+            <a class="view-all-link" href="#">
+              View More Activity
+              <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+          </section>
+        </div>
+
+        <!-- RIGHT RAIL -->
+        <aside class="profile-col-right">
+          <div class="side-card">
+            <h3 class="side-card-title">People You May Know</h3>
+            <ul class="people-list">
+              <li class="person-row">
+                <img src="pics/sere.jpg" alt="" />
+                <div class="person-info">
+                  <span class="person-name">Sher Bahadur Deuba</span>
+                  <span class="person-role">President, Nepali Congress</span>
+                </div>
+                <button class="mini-follow-btn">Follow</button>
+              </li>
+              <li class="person-row">
+                <img src="pics/gaganthapa.jpg" alt="" />
+                <div class="person-info">
+                  <span class="person-name">Gagan Thapa</span>
+                  <span class="person-role">Member of Parliament</span>
+                </div>
+                <button class="mini-follow-btn">Follow</button>
+              </li>
+              <li class="person-row">
+                <img src="pics/prakash.png" alt="" />
+                <div class="person-info">
+                  <span class="person-name">Prakash Man Singh</span>
+                  <span class="person-role">Senior Leader</span>
+                </div>
+                <button class="mini-follow-btn">Follow</button>
+              </li>
+              <li class="person-row">
+                <img src="pics/bimalendra.png" alt="" />
+                <div class="person-info">
+                  <span class="person-name">Bimalendra Nidhi</span>
+                  <span class="person-role">Vice President, NC</span>
+                </div>
+                <button class="mini-follow-btn">Follow</button>
+              </li>
+              <li class="person-row">
+                <span class="person-avatar-fallback">SK</span>
+                <div class="person-info">
+                  <span class="person-name">Dr. Shekhar Koirala</span>
+                  <span class="person-role">General Convention Member</span>
+                </div>
+                <button class="mini-follow-btn">Follow</button>
+              </li>
+            </ul>
+            <a class="view-all-link" href="#">
+              See All Suggestions
+              <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+          </div>
+
+          <div class="side-card">
+            <h3 class="side-card-title">Top Groups</h3>
+            <ul class="top-groups">
+              <li class="group-row">
+                <img class="group-flag" src="pics/Nepali-Congress-Flag-browser.jpg" alt="" />
+                <div class="group-info">
+                  <span class="group-name">Nepali Congress Official Group</span>
+                  <span class="group-meta">12.5K Members</span>
+                </div>
+                <button class="mini-join-btn">Join</button>
+              </li>
+              <li class="group-row">
+                <img class="group-flag" src="pics/Nepali-Congress-Flag-browser.jpg" alt="" />
+                <div class="group-info">
+                  <span class="group-name">Policy &amp; Research Forum</span>
+                  <span class="group-meta">5.8K Members</span>
+                </div>
+                <button class="mini-join-btn">Join</button>
+              </li>
+              <li class="group-row">
+                <img class="group-flag" src="pics/Nepali-Congress-Flag-browser.jpg" alt="" />
+                <div class="group-info">
+                  <span class="group-name">Youth Leadership Network</span>
+                  <span class="group-meta">3.2K Members</span>
+                </div>
+                <button class="mini-join-btn">Join</button>
+              </li>
+              <li class="group-row">
+                <img class="group-flag" src="pics/Nepali-Congress-Flag-browser.jpg" alt="" />
+                <div class="group-info">
+                  <span class="group-name">Democracy &amp; Governance</span>
+                  <span class="group-meta">6.2K Members</span>
+                </div>
+                <button class="mini-join-btn">Join</button>
+              </li>
+              <li class="group-row">
+                <img class="group-flag" src="pics/Nepali-Congress-Flag-browser.jpg" alt="" />
+                <div class="group-info">
+                  <span class="group-name">Women Leadership Initiative</span>
+                  <span class="group-meta">2.1K Members</span>
+                </div>
+                <button class="mini-join-btn">Join</button>
+              </li>
+            </ul>
+            <a class="view-all-link" href="#">
+              View All Groups
+              <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+          </div>
+
+          <div class="side-card">
+            <h3 class="side-card-title">Photos</h3>
+            <div class="photo-grid">
+              <img src="pics/1stthumnai-browser.jpg" alt="" />
+              <img src="pics/videothum1.jpg" alt="" />
+              <img src="pics/third-webp.webp" alt="" />
+              <img src="pics/videothum2.jpg" alt="" />
+              <img src="pics/forththum-webp.webp" alt="" />
+              <img src="pics/videothum3.jpg" alt="" />
+            </div>
+            <a class="view-all-link" href="#">
+              View All Photos
+              <svg class="svg-icon sm" aria-hidden="true"><use href="#icon-arrow-right"></use></svg>
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- CTA band (shared style) -->
+      <section class="cta-banner">
+        <div class="cta-left">
+          <img
+            class="cta-flag"
+            src="pics/Nepali-Congress-Flag-browser.jpg"
+            alt="Nepali Congress flag"
+          />
+          <div class="cta-copy">
+            <h2>Be a Part of the <span class="cta-accent">Change</span></h2>
+            <p>Join thousands of Nepalese working together for a better Nepal.</p>
+          </div>
+        </div>
+        <div class="cta-actions">
+          <a href="#" class="cta-primary-btn">
+            <svg class="svg-icon" aria-hidden="true" focusable="false">
+              <use href="#icon-users"></use>
+            </svg>
+            <span>Join Nepali Congress</span>
+            <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false">
+              <use href="#icon-arrow-right"></use>
+            </svg>
+          </a>
+          <a href="#" class="cta-outline-btn">Explore Resources</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER (shared) ============ -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img
+              src="pics/Nepali-Congress-Flag-browser.jpg"
+              alt="Nepali Congress flag"
+              class="footer-flag"
+            />
+            <div>
+              <div class="footer-brand-title">नेपाली कांग्रेस</div>
+              <div class="footer-brand-subtitle">Official Website of Nepali Congress</div>
+            </div>
+          </a>
+          <p class="footer-desc">
+            Empowering the nation with inclusive politics, social initiatives
+            &amp; building a prosperous, democratic Nepal.
+          </p>
+          <div class="social-icons">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-facebook"></use></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter">
+              <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-twitter"></use></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-instagram"></use></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="YouTube">
+              <svg class="svg-icon" aria-hidden="true" focusable="false"><use href="#icon-youtube"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-nav" aria-label="Quick links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Calendar</a></li>
+            <li><a href="#">Documents</a></li>
+            <li><a href="#">Press/Media</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-nav" aria-label="Resources">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Learning Videos</a></li>
+            <li><a href="#">Guidelines</a></li>
+            <li><a href="#">Membership Info</a></li>
+            <li><a href="#">Downloads</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-nav" aria-label="Support">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-newsletter">
+          <h4>Subscribe to Newsletter</h4>
+          <p>Stay informed with updates on news, events and more.</p>
+          <form class="newsletter-form" onsubmit="return false;">
+            <input type="email" placeholder="Enter your email" aria-label="Email address" />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Nepali Congress. All Rights Reserved.</span>
+        <span>Made with <span class="heart">❤</span> in Nepal</span>
+      </div>
+    </footer>
+  </body>
+</html>
