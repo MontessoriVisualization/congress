@@ -2,1630 +2,2299 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nepali Congress Learning Platform</title>
-    <link
-      rel="preload"
-      as="image"
-      href="pics/Nepali-Congress-Flag-browser.jpg"
-    />
-    <link rel="preload" as="image" href="pics/hero-browser.webp" />
-    <link rel="preload" as="image" href="pics/1stthumnai-browser.jpg" />
+    <title>Pulse — Home</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..600&family=Libre+Franklin:wght@400;500;600;700&family=Mukta:wght@400;500;600;700;800&display=swap"
     />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="translator.js" defer></script>
-    <script src="script.js" defer></script>
+    <style>
+      /* ─── shadcn/ui-aligned design tokens ─── */
+      :root {
+        /* shadcn core */
+        --background: #ffffff;
+        --foreground: #0b2027;
+        --card: #f7f9f9;
+        --card-foreground: #0b2027;
+        --popover: #ffffff;
+        --popover-foreground: #0b2027;
+        --primary: #0b2027;
+        --primary-foreground: #ffffff;
+        --secondary: #f1f5f2;
+        --secondary-foreground: #0b2027;
+        --muted: #f1f5f2;
+        --muted-foreground: #5b6b6e;
+        --accent: #f1f5f2;
+        --accent-foreground: #0b2027;
+        --destructive: #fb3640;
+        --destructive-foreground: #ffffff;
+        --border: #e4eae8;
+        --input: #e4eae8;
+        --ring: #15803d;
+        --radius: 0.5rem; /* shadcn default */
+
+        /* brand */
+        --brand: #15803d;
+        --brand-hover: #136b34;
+        --brand-muted: rgba(21, 128, 61, 0.1);
+        --retweet: #0e7490;
+        --retweet-muted: rgba(14, 116, 144, 0.1);
+        --like: #fb3640;
+        --like-muted: rgba(251, 54, 64, 0.1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Helvetica,
+          Arial,
+          sans-serif;
+        background: var(--background);
+        color: var(--foreground);
+        font-size: 15px;
+        line-height: 20px;
+      }
+
+      /* Space Grotesk for display elements — mirrors shadcn's font-semibold headings */
+      h1,
+      h2,
+      h3,
+      .nav-account-name,
+      .tweet-name,
+      .ctx-name,
+      .news-headline,
+      .trend-name,
+      .follow-name,
+      .modal-drafts,
+      .post-btn,
+      .reply-submit,
+      .post-submit {
+        font-family:
+          "Space Grotesk",
+          "Inter",
+          -apple-system,
+          sans-serif;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ─── Layout ─── */
+      /* Tight 3-col grid; no excessive outer margin */
+      .app {
+        display: grid;
+        grid-template-columns: 240px 598px 330px;
+        width: fit-content;
+        margin: 0 auto;
+        min-height: 100vh;
+      }
+
+      /* ─── Left Nav ─── */
+      .nav {
+        padding: 8px 10px 8px 8px;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+      }
+      .nav-logo {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        margin-bottom: 4px;
+        transition: background 0.15s;
+      }
+      .nav-logo:hover {
+        background: var(--secondary);
+      }
+      .nav-logo svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .nav-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 10px 14px;
+        border-radius: 9999px;
+        font-size: 18px;
+        font-weight: 400;
+        cursor: pointer;
+        width: fit-content;
+        max-width: 216px;
+        color: var(--foreground);
+        position: relative;
+        transition: background 0.15s;
+      }
+      .nav-item:hover {
+        background: var(--secondary);
+      }
+      .nav-item:active {
+        background: rgba(15, 20, 25, 0.15);
+      }
+      .nav-item.active {
+        font-weight: 700;
+      }
+      .nav-item svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      .nav-icon-wrap {
+        position: relative;
+      }
+      .nav-badge {
+        position: absolute;
+        top: -4px;
+        right: -6px;
+        background: var(--brand);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .post-btn-wrap {
+        margin-top: 14px;
+      }
+      /* shadcn Button (default variant) */
+      .post-btn {
+        background: var(--primary);
+        color: var(--primary-foreground);
+        border: none;
+        width: 100%;
+        max-width: 216px;
+        padding: 13px 0;
+        border-radius: 9999px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: opacity 0.15s;
+      }
+      .post-btn:hover {
+        opacity: 0.9;
+      }
+
+      .nav-spacer {
+        flex: 1;
+      }
+      .nav-account {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 9999px;
+        cursor: pointer;
+        max-width: 216px;
+        transition: background 0.15s;
+      }
+      .nav-account:hover {
+        background: var(--secondary);
+      }
+      .nav-account img {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        object-fit: cover;
+      }
+      .nav-account-info {
+        flex: 1;
+        overflow: hidden;
+      }
+      .nav-account-name {
+        font-weight: 700;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .nav-account-handle {
+        color: var(--muted-foreground);
+        font-size: 13px;
+      }
+      .nav-account-dots {
+        color: var(--foreground);
+        font-weight: 700;
+      }
+
+      /* ─── Main Feed ─── */
+      .main {
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+        min-height: 100vh;
+      }
+      .main-header {
+        position: sticky;
+        top: 0;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 5;
+        border-bottom: 1px solid var(--border);
+      }
+      .tabs {
+        display: flex;
+      }
+      .tab {
+        flex: 1;
+        text-align: center;
+        padding: 16px 0;
+        font-weight: 600;
+        color: var(--muted-foreground);
+        cursor: pointer;
+        position: relative;
+        transition: color 0.15s;
+      }
+      .tab.active {
+        color: var(--foreground);
+        font-weight: 700;
+      }
+      .tab.active::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 56px;
+        height: 4px;
+        background: var(--brand);
+        border-radius: 9999px;
+      }
+
+      /* Composer */
+      .composer {
+        display: flex;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+      .composer img {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .composer-body {
+        flex: 1;
+        padding-top: 6px;
+      }
+
+      /* shadcn icon-button */
+      .icon-btn {
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        color: var(--brand);
+        cursor: pointer;
+        transition: background 0.12s;
+      }
+      .icon-btn:hover {
+        background: var(--brand-muted);
+      }
+      .icon-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .composer-icons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .composer-icons-left {
+        display: flex;
+        gap: 2px;
+      }
+
+      /* shadcn Badge-style disabled post button */
+      .post-submit {
+        background: #9abfaa;
+        color: #fff;
+        border: none;
+        padding: 7px 18px;
+        border-radius: 9999px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: default;
+        transition: background 0.15s;
+      }
+      .post-submit.enabled {
+        background: var(--brand);
+        cursor: pointer;
+      }
+      .post-submit.enabled:hover {
+        background: var(--brand-hover);
+      }
+      .post-submit.enabled:active,
+      .reply-submit:active {
+        transform: scale(0.97);
+      }
+
+      textarea.compose-input,
+      textarea.rc-input {
+        width: 100%;
+        border: none;
+        outline: none;
+        resize: none;
+        font-family: inherit;
+        font-size: 19px;
+        line-height: 24px;
+        color: var(--foreground);
+        padding: 4px 0;
+        min-height: 28px;
+        background: transparent;
+      }
+      textarea.rc-input {
+        font-size: 19px;
+        margin-bottom: 8px;
+      }
+
+      /* Tweet */
+      .tweet {
+        display: flex;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        cursor: pointer;
+        transition: background 0.1s;
+      }
+      .tweet:hover {
+        background: rgba(0, 0, 0, 0.015);
+      }
+
+      .tweet-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        flex-shrink: 0;
+        background: var(--foreground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .tweet-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .tweet-avatar.silhouette svg {
+        width: 22px;
+        height: 22px;
+        fill: #fff;
+      }
+
+      .tweet-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .tweet-head {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .tweet-name {
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--foreground);
+      }
+      .verified-badge {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+      }
+      .tweet-handle,
+      .tweet-dot,
+      .tweet-time {
+        color: var(--muted-foreground);
+        font-size: 15px;
+      }
+      .tweet-more {
+        margin-left: auto;
+        display: flex;
+        gap: 2px;
+        color: var(--muted-foreground);
+        flex-shrink: 0;
+      }
+      .tweet-more .icon-btn {
+        color: var(--muted-foreground);
+        width: 28px;
+        height: 28px;
+      }
+      .tweet-more .icon-btn svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .tweet-text {
+        font-size: 15px;
+        line-height: 20px;
+        margin: 2px 0 10px 0;
+        color: var(--foreground);
+        white-space: pre-wrap;
+      }
+
+      /* shadcn Card border-radius matches --radius on media */
+      .tweet-media {
+        border-radius: calc(var(--radius) * 2);
+        overflow: hidden;
+        position: relative;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+      .tweet-media img,
+      .tweet-media video {
+        width: 100%;
+        display: block;
+      }
+      .media-duration {
+        position: absolute;
+        bottom: 8px;
+        left: 8px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      .tweet-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 420px;
+        margin-top: 4px;
+        color: var(--muted-foreground);
+      }
+      .tweet-action {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: color 0.12s;
+      }
+      .tweet-action .icon-btn {
+        width: 34px;
+        height: 34px;
+        color: inherit;
+        transition:
+          background 0.12s,
+          transform 0.12s;
+      }
+      .tweet-action .icon-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .tweet-action.reply:hover {
+        color: var(--brand);
+      }
+      .tweet-action.reply:hover .icon-btn {
+        background: var(--brand-muted);
+      }
+      .tweet-action.retweet:hover {
+        color: var(--retweet);
+      }
+      .tweet-action.retweet:hover .icon-btn {
+        background: var(--retweet-muted);
+      }
+      .tweet-action.like:hover {
+        color: var(--like);
+      }
+      .tweet-action.like:hover .icon-btn {
+        background: var(--like-muted);
+      }
+      .tweet-action.views:hover {
+        color: var(--brand);
+      }
+      .tweet-action.views:hover .icon-btn {
+        background: var(--brand-muted);
+      }
+      .tweet-action.share {
+        margin-left: auto;
+      }
+      .tweet-action.like.liked {
+        color: var(--like);
+      }
+      .tweet-action.like.liked .icon-btn svg {
+        fill: var(--like);
+        stroke: var(--like);
+      }
+      .tweet-action.like .icon-btn:active {
+        transform: scale(0.85);
+      }
+      .tweet-action.retweet.retweeted {
+        color: var(--retweet);
+      }
+      .tweet-action.retweet.retweeted .icon-btn svg {
+        stroke: var(--retweet);
+      }
+      .tweet-action.bookmark.bookmarked .icon-btn svg {
+        fill: var(--brand);
+        stroke: var(--brand);
+      }
+
+      @keyframes pop {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.35);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .pop {
+        animation: pop 0.3s ease;
+      }
+
+      /* play overlay */
+      .play-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.15);
+        transition: opacity 0.2s;
+        cursor: pointer;
+      }
+      .play-overlay.played {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .play-circle {
+        width: 64px;
+        height: 64px;
+        background: rgba(0, 0, 0, 0.65);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .play-circle svg {
+        width: 26px;
+        height: 26px;
+        fill: #fff;
+        margin-left: 3px;
+      }
+
+      /* ─── Right Sidebar ─── */
+      .right {
+        padding: 8px 12px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+      }
+      /* Hide scrollbar but keep scrollable */
+      .right::-webkit-scrollbar {
+        display: none;
+      }
+      .right {
+        scrollbar-width: none;
+      }
+
+      /* shadcn Input */
+      .search-box {
+        position: relative;
+        margin-bottom: 14px;
+      }
+      .search-box input {
+        width: 100%;
+        background: var(--muted);
+        border: 1px solid transparent;
+        border-radius: 9999px;
+        padding: 10px 16px 10px 42px;
+        font-size: 15px;
+        color: var(--foreground);
+        outline: none;
+        transition:
+          border-color 0.15s,
+          background 0.15s;
+        font-family: inherit;
+      }
+      .search-box input:focus {
+        background: var(--background);
+        border-color: var(--ring);
+      }
+      .search-box svg {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        fill: var(--muted-foreground);
+      }
+
+      /* shadcn Card */
+      .panel {
+        background: var(--card);
+        border-radius: calc(var(--radius) * 2);
+        border: 1px solid var(--border);
+        margin-bottom: 14px;
+        overflow: hidden;
+      }
+      .panel-title {
+        font-size: 19px;
+        font-weight: 800;
+        padding: 14px 16px 4px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .panel-title .close-x {
+        cursor: pointer;
+        color: var(--foreground);
+      }
+      .panel-title .close-x svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .news-item,
+      .trend-item,
+      .person-item,
+      .follow-item {
+        padding: 11px 16px;
+        cursor: pointer;
+        transition: background 0.1s;
+      }
+      .news-item:hover,
+      .trend-item:hover,
+      .person-item:hover,
+      .follow-item:hover {
+        background: rgba(15, 20, 25, 0.04);
+      }
+
+      .news-headline {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 19px;
+        margin-bottom: 5px;
+      }
+      .news-meta {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--muted-foreground);
+        font-size: 12px;
+      }
+      .news-avatars {
+        display: flex;
+      }
+      .news-avatars span {
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        background: #ccc;
+        border: 2px solid var(--card);
+        margin-left: -5px;
+        display: inline-block;
+        overflow: hidden;
+      }
+      .news-avatars span:first-child {
+        margin-left: 0;
+      }
+      .news-avatars img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .trend-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .trend-cat {
+        color: var(--muted-foreground);
+        font-size: 12px;
+      }
+      .trend-name {
+        font-weight: 700;
+        font-size: 14px;
+        margin-top: 2px;
+      }
+      .trend-sub {
+        color: var(--muted-foreground);
+        font-size: 12px;
+        margin-top: 2px;
+      }
+      .trend-sub a {
+        color: var(--brand);
+      }
+      .trend-dots {
+        color: var(--muted-foreground);
+      }
+      .trend-dots svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      .show-more {
+        padding: 13px 16px;
+        color: var(--brand);
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.1s;
+      }
+      .show-more:hover {
+        background: rgba(15, 20, 25, 0.04);
+      }
+
+      .person-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .person-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        background: var(--foreground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .person-avatar svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+      }
+
+      .follow-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .follow-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .follow-name {
+        font-weight: 700;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+      .follow-handle {
+        color: var(--muted-foreground);
+        font-size: 13px;
+      }
+
+      /* shadcn Button (outline variant) → Follow pill */
+      .follow-pill {
+        background: var(--primary);
+        color: var(--primary-foreground);
+        font-weight: 700;
+        font-size: 13px;
+        padding: 6px 14px;
+        border-radius: 9999px;
+        border: 1px solid transparent;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .follow-pill.following {
+        background: var(--background);
+        color: var(--foreground);
+        border-color: var(--border);
+      }
+      .follow-pill.following:hover {
+        background: rgba(244, 33, 46, 0.08);
+        color: var(--destructive);
+        border-color: rgba(244, 33, 46, 0.35);
+      }
+      .follow-pill.following .pill-label-default {
+        display: inline;
+      }
+      .follow-pill.following:hover .pill-label-default {
+        display: none;
+      }
+      .follow-pill.following .pill-label-hover {
+        display: none;
+      }
+      .follow-pill.following:hover .pill-label-hover {
+        display: inline;
+      }
+
+      .footer-links {
+        padding: 0 4px;
+        font-size: 12px;
+        color: var(--muted-foreground);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 5px;
+        line-height: 1.6;
+      }
+      .footer-links span {
+        cursor: pointer;
+      }
+      .footer-links span:hover {
+        text-decoration: underline;
+      }
+
+      /* ─── Modal / Overlay ─── */
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(91, 112, 131, 0.4);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-index: 100;
+        padding-top: 48px;
+        animation: fadeIn 0.15s ease;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* shadcn Dialog */
+      .modal {
+        background: var(--popover);
+        width: 600px;
+        max-height: 90vh;
+        border-radius: calc(var(--radius) * 2);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.05),
+          0 8px 30px rgba(0, 0, 0, 0.22);
+        animation: slideUp 0.18s ease;
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(12px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 16px;
+      }
+      .modal-close {
+        width: 34px;
+        height: 34px;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .modal-close:hover {
+        background: var(--muted);
+      }
+      .modal-close svg {
+        width: 18px;
+        height: 18px;
+      }
+      .modal-drafts {
+        color: var(--brand);
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      .modal-drafts:hover {
+        text-decoration: underline;
+      }
+
+      .modal-context {
+        display: flex;
+        gap: 12px;
+        padding: 4px 16px 0 16px;
+      }
+      .modal-context .ctx-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        background: var(--foreground);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .modal-context .ctx-avatar svg {
+        width: 22px;
+        height: 22px;
+        fill: #fff;
+      }
+      .ctx-body {
+        flex: 1;
+        min-width: 0;
+        padding-bottom: 8px;
+      }
+      .ctx-head {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+      .ctx-name {
+        font-weight: 700;
+        font-size: 15px;
+      }
+      .ctx-handle {
+        color: var(--muted-foreground);
+        font-size: 15px;
+      }
+      .ctx-text {
+        font-size: 15px;
+        margin-top: 2px;
+      }
+      .ctx-link {
+        color: var(--brand);
+      }
+
+      .thread-line-row {
+        display: flex;
+        gap: 12px;
+        padding: 0 16px;
+      }
+      .thread-line-col {
+        width: 38px;
+        display: flex;
+        justify-content: center;
+      }
+      .thread-line {
+        width: 2px;
+        background: var(--border);
+        flex: 1;
+        min-height: 16px;
+      }
+      .replying-to {
+        font-size: 15px;
+        color: var(--muted-foreground);
+        padding-top: 6px;
+      }
+      .replying-to a {
+        color: var(--brand);
+      }
+
+      .reply-compose {
+        display: flex;
+        gap: 12px;
+        padding: 12px 16px 0 16px;
+      }
+      .reply-compose .rc-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+      .rc-body {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .gif-attach {
+        position: relative;
+        border-radius: calc(var(--radius) * 2);
+        overflow: hidden;
+        margin-bottom: 8px;
+      }
+      .gif-attach img {
+        width: 100%;
+        display: block;
+      }
+      .gif-remove {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+        background: rgba(15, 20, 25, 0.75);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .gif-remove:hover {
+        background: rgba(15, 20, 25, 0.9);
+      }
+      .gif-remove svg {
+        width: 13px;
+        height: 13px;
+        fill: #fff;
+      }
+      .gif-tag {
+        position: absolute;
+        bottom: 8px;
+        left: 8px;
+        background: rgba(0, 0, 0, 0.7);
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 4px;
+        letter-spacing: 0.2px;
+      }
+      .gif-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 58px;
+        height: 58px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .gif-play svg {
+        width: 24px;
+        height: 24px;
+        fill: #fff;
+        margin-left: 2px;
+      }
+
+      .add-desc {
+        color: var(--brand);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 0 10px 0;
+        cursor: pointer;
+      }
+      .add-desc svg {
+        width: 13px;
+        height: 13px;
+      }
+      .add-desc:hover {
+        text-decoration: underline;
+      }
+
+      .modal-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 16px 12px 16px;
+        border-top: 1px solid var(--border);
+        margin-top: 4px;
+      }
+      .modal-toolbar-left {
+        display: flex;
+        align-items: center;
+        gap: 0;
+      }
+      .modal-toolbar-left .icon-btn {
+        color: var(--brand);
+        width: 34px;
+        height: 34px;
+      }
+
+      /* shadcn Button (default) → Reply */
+      .reply-submit {
+        background: var(--primary);
+        color: var(--primary-foreground);
+        border: none;
+        padding: 7px 18px;
+        border-radius: 9999px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity 0.15s;
+      }
+      .reply-submit:hover {
+        opacity: 0.88;
+      }
+
+      /* ─── Float buttons ─── */
+      .float-btns {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 10;
+      }
+      /* shadcn ghost-button circle */
+      .float-btn {
+        width: 46px;
+        height: 46px;
+        border-radius: 9999px;
+        background: var(--background);
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .float-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+      }
+      .float-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* ─── Toast ─── */
+      /* shadcn Sonner-style */
+      .toast {
+        position: fixed;
+        bottom: 88px;
+        left: 50%;
+        transform: translateX(-50%) translateY(16px);
+        background: var(--popover);
+        color: var(--foreground);
+        font-weight: 600;
+        font-size: 14px;
+        padding: 12px 20px;
+        border-radius: calc(var(--radius) * 2);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+        border: 1px solid var(--border);
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        z-index: 200;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .modal-context,
+      .reply-compose {
+        cursor: default;
+      }
+    </style>
   </head>
   <body>
-    <svg class="svg-sprite" aria-hidden="true" focusable="false">
-      <symbol id="icon-search" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="7"></circle>
-        <path d="m20 20-4-4"></path>
-      </symbol>
-      <symbol id="icon-globe" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="2" y1="12" x2="22" y2="12"></line>
-        <path
-          d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-        ></path>
-      </symbol>
-      <symbol id="icon-podcast" viewBox="0 0 24 24">
-        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
-        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-        <line x1="12" y1="19" x2="12" y2="23"></line>
-        <line x1="8" y1="23" x2="16" y2="23"></line>
-      </symbol>
-      <symbol id="icon-pause-fill" viewBox="0 0 24 24">
-        <rect
-          x="6"
-          y="4"
-          width="4"
-          height="16"
-          rx="1"
-          fill="currentColor"
-          stroke="none"
-        ></rect>
-        <rect
-          x="14"
-          y="4"
-          width="4"
-          height="16"
-          rx="1"
-          fill="currentColor"
-          stroke="none"
-        ></rect>
-      </symbol>
-      <symbol id="icon-user" viewBox="0 0 24 24">
-        <circle cx="12" cy="8" r="4"></circle>
-        <path d="M5 21a7 7 0 0 1 14 0"></path>
-      </symbol>
-      <symbol id="icon-users" viewBox="0 0 24 24">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
-        <circle cx="9.5" cy="7" r="4"></circle>
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-      </symbol>
-      <symbol id="icon-shield-check" viewBox="0 0 24 24">
-        <path d="M20 13c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V5l8-3 8 3v8Z"></path>
-        <path d="m9 12 2 2 4-5"></path>
-      </symbol>
-      <symbol id="icon-book-open" viewBox="0 0 24 24">
-        <path d="M12 7v14"></path>
-        <path
-          d="M3 5a7 7 0 0 1 9 2 7 7 0 0 1 9-2v14a7 7 0 0 0-9 2 7 7 0 0 0-9-2V5Z"
-        ></path>
-      </symbol>
-      <symbol id="icon-play-square" viewBox="0 0 24 24">
-        <rect x="3" y="5" width="18" height="14" rx="2"></rect>
-        <path d="m10 9 5 3-5 3V9Z"></path>
-      </symbol>
-      <symbol id="icon-calendar" viewBox="0 0 24 24">
-        <path d="M8 2v4"></path>
-        <path d="M16 2v4"></path>
-        <rect x="3" y="4" width="18" height="18" rx="2"></rect>
-        <path d="M3 10h18"></path>
-        <path d="M8 14h.01"></path>
-        <path d="M12 14h.01"></path>
-        <path d="M16 14h.01"></path>
-        <path d="M8 18h.01"></path>
-        <path d="M12 18h.01"></path>
-        <path d="M16 18h.01"></path>
-      </symbol>
-      <symbol id="icon-graduation-cap" viewBox="0 0 24 24">
-        <path d="m22 10-10-5-10 5 10 5 10-5Z"></path>
-        <path d="M6 12v5c3 2 9 2 12 0v-5"></path>
-        <path d="M22 10v6"></path>
-      </symbol>
-      <symbol id="icon-arrow-right" viewBox="0 0 24 24">
-        <path d="M5 12h14"></path>
-        <path d="m13 6 6 6-6 6"></path>
-      </symbol>
-      <symbol id="icon-chevron-right" viewBox="0 0 24 24">
-        <path d="m9 18 6-6-6-6"></path>
-      </symbol>
-      <symbol id="icon-chevron-left" viewBox="0 0 24 24">
-        <path d="m15 18-6-6 6-6"></path>
-      </symbol>
-      <symbol id="icon-sparkle" viewBox="0 0 24 24">
-        <path
-          d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"
-        ></path>
-        <path
-          d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"
-        ></path>
-      </symbol>
-      <symbol id="icon-play-fill" viewBox="0 0 24 24">
-        <path d="m9 6 10 6-10 6V6Z" fill="currentColor" stroke="none"></path>
-      </symbol>
-      <symbol id="icon-clock" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"></circle>
-        <polyline points="12 6 12 12 16 14"></polyline>
-      </symbol>
-      <symbol id="icon-facebook" viewBox="0 0 24 24">
-        <path
-          d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-        ></path>
-      </symbol>
-      <symbol id="icon-twitter" viewBox="0 0 24 24">
-        <path
-          d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
-        ></path>
-      </symbol>
-      <symbol id="icon-instagram" viewBox="0 0 24 24">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-      </symbol>
-      <symbol id="icon-youtube" viewBox="0 0 24 24">
-        <path
-          d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.41 19.1C5.12 19.56 12 19.56 12 19.56s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"
-        ></path>
-        <polygon
-          points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"
-          fill="currentColor"
-          stroke="none"
-        ></polygon>
-      </symbol>
-      <symbol id="icon-target" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"></circle>
-        <circle cx="12" cy="12" r="6"></circle>
-        <circle cx="12" cy="12" r="2"></circle>
-      </symbol>
-      <symbol id="icon-hand-heart" viewBox="0 0 24 24">
-        <path d="M11 14h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.6.6L6 13"></path>
-        <path
-          d="m7 18 1.6-1.4c.4-.4 1-.6 1.6-.6H13c1 0 2-.4 2.7-1.1l4.6-4.4a2 2 0 0 0-2.8-2.9l-4.2 4"
-        ></path>
-        <path d="M2 12h4v8H2z"></path>
-        <path
-          d="M16 4.5c1.2-1.2 3.1-.4 3.1 1.3 0 2-3.1 3.7-3.1 3.7S12.9 7.8 12.9 5.8c0-1.7 2-2.5 3.1-1.3Z"
-        ></path>
-      </symbol>
-    </svg>
-
-    <header class="site-header">
-      <a class="brand" href="#" aria-label="Nepali Congress home">
-        <img
-          class="brand-flag"
-          src="pics/Nepali-Congress-Flag-browser.jpg"
-          alt="Nepali Congress flag"
-          width="900"
-          height="506"
-          loading="eager"
-          fetchpriority="high"
-        />
-        <div>
-          <div class="brand-title" data-trn="brand.title">नेपाली कांग्रेस</div>
-          <div class="brand-subtitle" data-trn="brand.subtitle">
-            Digital Learning &amp; Assessment Platform
-          </div>
+    <div class="app">
+      <!-- LEFT NAV -->
+      <nav class="nav">
+        <a class="nav-logo" href="#">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#15803D"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M2 12h4l2.5-7 5 14L16 12h6" />
+          </svg>
+        </a>
+        <ul class="nav-list">
+          <li class="nav-item active" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 2.5 2.5 9.8V21h6.4v-6.6h6.2V21h6.4V9.8z" />
+            </svg>
+            Home
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.3-4.3" />
+            </svg>
+            Explore
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <div class="nav-icon-wrap">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+              </svg>
+              <span class="nav-badge" id="notif-badge">2</span>
+            </div>
+            Notifications
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="9" cy="8" r="3.5" />
+              <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6" />
+            </svg>
+            Follow
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M4 4h13l3 3v13H4z" />
+              <path d="M8 4v6h8V4" />
+            </svg>
+            Chat
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M9 9l6 6M9 15l6-6" />
+            </svg>
+            Assistant
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+            Pulse+
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 3h12v18l-6-4-6 4z" />
+            </svg>
+            Bookmarks
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M9 3v18M5 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"
+              />
+            </svg>
+            Creator Studio
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M4 19V6a1 1 0 0 1 1-1h11l4 4v10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"
+              />
+              <path d="M8 9h8M8 13h8M8 17h5" />
+            </svg>
+            Articles
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+            </svg>
+            Profile
+          </li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="5" cy="12" r="1.5" />
+              <circle cx="12" cy="12" r="1.5" />
+              <circle cx="19" cy="12" r="1.5" />
+            </svg>
+            More
+          </li>
+        </ul>
+        <div class="post-btn-wrap">
+          <button class="post-btn" onclick="openModal()">Post</button>
         </div>
-      </a>
-
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a class="active" href="#" data-trn="nav.home">Home</a>
-        <a href="#" data-trn="nav.articles">Articles</a>
-        <a href="#" data-trn="nav.videos">Videos</a>
-        <a href="#" data-trn="nav.calendar">Calendar</a>
-        <a href="#" data-trn="nav.documents">Documents</a>
-        <a href="#" data-trn="nav.about">About Us</a>
+        <div class="nav-spacer"></div>
+        <div class="nav-account" onclick="showToast('Account menu')">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+          <div class="nav-account-info">
+            <div class="nav-account-name">Alex Smith</div>
+            <div class="nav-account-handle">@AlexSmithmobbin</div>
+          </div>
+          <span class="nav-account-dots">⋯</span>
+        </div>
       </nav>
 
-      <div class="header-actions">
-        <button class="icon-btn" aria-label="Search" data-trn="btn.search">
-          <svg class="svg-icon" aria-hidden="true" focusable="false">
-            <use href="#icon-search"></use>
-          </svg>
-        </button>
-
-        <!-- Language Selector -->
-        <div class="lang-switcher">
-          <button
-            class="lang-btn"
-            aria-expanded="false"
-            aria-haspopup="true"
-            aria-label="Select Language"
-          >
-            <svg
-              class="svg-icon lang-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-globe"></use>
-            </svg>
-            <span class="lang-label">English</span>
-            <svg
-              class="svg-icon chevron-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-chevron-right"></use>
-            </svg>
-          </button>
-          <ul class="lang-dropdown">
-            <li><button data-lang-select="en">English</button></li>
-            <li><button data-lang-select="ne">नेपाली</button></li>
-          </ul>
-        </div>
-
-        <a class="outline-btn" href="profile.html">
-          <svg class="svg-icon" aria-hidden="true" focusable="false">
-            <use href="#icon-user"></use>
-          </svg>
-          <span data-trn="btn.login">Log In</span>
-        </a>
-        <button class="primary-btn">
-          <svg class="svg-icon" aria-hidden="true" focusable="false">
-            <use href="#icon-users"></use>
-          </svg>
-          <span data-trn="btn.join">Join Now</span>
-        </button>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="eyebrow">
-            <svg
-              class="svg-icon sparkle-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-sparkle"></use>
-            </svg>
-            <span data-trn="hero.eyebrow">AI POWERED PLATFORM</span>
-          </div>
-          <h1 data-trn="hero.title">
-            <span>Learn. Understand.</span>
-            <strong>Lead the Change.</strong>
-          </h1>
-          <div class="red-mark" aria-hidden="true"></div>
-          <p data-trn="hero.desc">
-            Empowering Nepali Congress members with knowledge, resources, and
-            assessments to build a stronger tomorrow.
-          </p>
-
-          <div class="hero-actions">
-            <a class="primary-link" href="#">
-              <span data-trn="hero.explore">Explore Articles</span>
-              <svg
-                class="svg-icon arrow-icon"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use href="#icon-arrow-right"></use>
-              </svg>
-            </a>
-            <a class="secondary-link" href="#">
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-users"></use>
-              </svg>
-              <span data-trn="hero.join">Join Nepali Congress</span>
-            </a>
-          </div>
-
-          <a class="verify-link" href="#">
-            <svg
-              class="svg-icon shield-check-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-shield-check"></use>
-            </svg>
-            <span data-trn="hero.verify"
-              >Verify your membership certificate</span
-            >
-            <svg
-              class="svg-icon chevron-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-chevron-right"></use>
-            </svg>
-          </a>
-        </div>
-
-        <div class="hero-art" aria-label="Hero image">
-          <img
-            class="hero-image"
-            src="pics/hero-browser.webp"
-            alt="Nepali Congress rally illustration"
-            width="1717"
-            height="916"
-            loading="eager"
-            fetchpriority="high"
-          />
-        </div>
-      </section>
-
-      <section class="stats" aria-label="Platform statistics">
-        <div class="stat-item">
-          <div class="stat-icon green">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-book-open"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="stats.articles_num">1,250+</strong>
-            <span data-trn="stats.articles_text">Articles Published</span>
+      <!-- MAIN FEED -->
+      <main class="main">
+        <div class="main-header">
+          <div class="tabs">
+            <div class="tab active" onclick="switchTab(this)">For you</div>
+            <div class="tab" onclick="switchTab(this)">Following</div>
           </div>
         </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-icon red">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-play-square"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="stats.videos_num">850+</strong>
-            <span data-trn="stats.videos_text">Videos Available</span>
-          </div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-icon green">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-calendar"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="stats.events_num">120+</strong>
-            <span data-trn="stats.events_text">Events Organized</span>
-          </div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <div class="stat-icon red">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-users"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="stats.members_num">25K+</strong>
-            <span data-trn="stats.members_text">Active Members</span>
-          </div>
-        </div>
-      </section>
 
-      <section class="featured-section">
-        <div class="section-intro">
-          <span class="section-kicker" data-trn="featured.kicker"
-            >FEATURED CONTENT</span
-          >
-          <h2 data-trn="featured.heading">
-            Explore. Learn. <strong>Grow.</strong>
-          </h2>
-          <p data-trn="featured.sub">
-            Curated articles, important updates, and insightful videos
-            handpicked for you.
-          </p>
-          <a class="dark-link" href="#">
-            <span data-trn="featured.view_all">View all articles</span>
-            <svg
-              class="svg-icon arrow-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-arrow-right"></use>
-            </svg>
-          </a>
-        </div>
-
-        <div class="content-row">
-          <article class="content-card">
-            <div class="card-image card-photo">
-              <img
-                src="pics/1stthumnai-browser.jpg"
-                alt="B. P. Koirala portrait thumbnail"
-                width="1536"
-                height="1024"
-                loading="eager"
-                fetchpriority="high"
-              />
-            </div>
-            <span class="badge green-badge" data-trn="featured.badge_featured"
-              >FEATURED</span
-            >
-            <div class="card-body">
-              <h3 data-trn="featured.card1_title">
-                बि. पी. कोइरालाको विचार र दर्शन
-              </h3>
-              <time datetime="2024-05-12">
-                <svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-calendar"></use>
-                </svg>
-                <span data-trn="featured.card1_date">May 12, 2024</span>
-              </time>
-            </div>
-          </article>
-
-          <article class="content-card">
-            <div class="card-image image-placeholder red-tint">
-              <img
-                src="pics/secondthumn.png"
-                alt="Nepali Congress crowd thumbnail"
-                width="1536"
-                height="1024"
-                loading="eager"
-              />
-            </div>
-            <span class="badge red-badge" data-trn="featured.badge_article"
-              >ARTICLE</span
-            >
-            <div class="card-body">
-              <h3 data-trn="featured.card2_title">
-                नेपाली कांग्रेसको इतिहास र अभियान
-              </h3>
-              <time datetime="2024-05-10">
-                <svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-calendar"></use>
-                </svg>
-                <span data-trn="featured.card2_date">May 10, 2024</span>
-              </time>
-            </div>
-          </article>
-
-          <article class="content-card video-card">
-            <div class="card-image card-photo dark-tint">
-              <img
-                src="pics/third-webp.webp"
-                alt="Nepali Congress interview thumbnail"
-                width="1536"
-                height="1024"
-                loading="eager"
-              />
-              <button class="play-button" aria-label="Play video">
-                <svg
-                  class="svg-icon play-fill-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-play-fill"></use>
-                </svg>
-              </button>
-              <span class="duration">18:45</span>
-            </div>
-            <span class="badge green-badge" data-trn="featured.badge_video"
-              >VIDEO</span
-            >
-            <div class="card-body">
-              <h3 data-trn="featured.card3_title">
-                लोकतन्त्र र गणतन्त्रमा नेपाली कांग्रेसको भूमिका
-              </h3>
-              <time datetime="2024-05-08">
-                <svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-calendar"></use>
-                </svg>
-                <span data-trn="featured.card3_date">May 8, 2024</span>
-              </time>
-            </div>
-          </article>
-
-          <article class="content-card">
-            <div class="card-image image-placeholder document-tint">
-              <img
-                src="pics/forththum-webp.webp"
-                alt="Nepali Congress document thumbnail"
-                width="1536"
-                height="1024"
-                loading="eager"
-              />
-            </div>
-            <span class="badge red-badge" data-trn="featured.badge_document"
-              >DOCUMENT</span
-            >
-            <div class="card-body">
-              <h3 data-trn="featured.card4_title">
-                नेपाली कांग्रेसको विधान (संशोधित)
-              </h3>
-              <time datetime="2024-05-05">
-                <svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-calendar"></use>
-                </svg>
-                <span data-trn="featured.card4_date">May 5, 2024</span>
-              </time>
-            </div>
-          </article>
-        </div>
-
-        <div class="carousel-controls" aria-label="Featured carousel controls">
-          <button class="carousel-btn previous" aria-label="Previous">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-chevron-left"></use>
-            </svg>
-          </button>
-          <button class="carousel-btn next" aria-label="Next">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-chevron-right"></use>
-            </svg>
-          </button>
-        </div>
-      </section>
-
-      <section class="quick-actions" aria-label="Quick actions">
-        <a href="#" class="quick-action">
-          <div class="quick-icon green-soft">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-users"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="actions.join_title">Join Nepali Congress</strong>
-            <span data-trn="actions.join_desc"
-              >Become a member and be part of the change.</span
-            >
-          </div>
-          <svg
-            class="svg-icon quick-arrow green-arrow"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <use href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-
-        <a href="#" class="quick-action">
-          <div class="quick-icon red-soft">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-shield-check"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="actions.verify_title">Verify Certificate</strong>
-            <span data-trn="actions.verify_desc"
-              >Verify your membership certificate instantly.</span
-            >
-          </div>
-          <svg
-            class="svg-icon quick-arrow red-arrow"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <use href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-
-        <a href="#" class="quick-action">
-          <div class="quick-icon green-soft">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-graduation-cap"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="actions.assess_title">Take Assessment</strong>
-            <span data-trn="actions.assess_desc"
-              >Test your knowledge and grow every day.</span
-            >
-          </div>
-          <svg
-            class="svg-icon quick-arrow green-arrow"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <use href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-
-        <a href="#" class="quick-action">
-          <div class="quick-icon red-soft">
-            <svg class="svg-icon" aria-hidden="true" focusable="false">
-              <use href="#icon-calendar"></use>
-            </svg>
-          </div>
-          <div>
-            <strong data-trn="actions.events_title">Upcoming Events</strong>
-            <span data-trn="actions.events_desc"
-              >Check out our upcoming programs and events.</span
-            >
-          </div>
-          <svg
-            class="svg-icon quick-arrow red-arrow"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <use href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-      </section>
-    </main>
-
-    <!-- Leaders' Thoughts -->
-    <section class="leaders-section">
-      <div class="section-top">
-        <div class="section-top-left">
-          <p class="lv-kicker" data-trn="leaders.kicker">LEADERS' THOUGHTS</p>
-          <h2 class="lv-heading" data-trn="leaders.heading">
-            Insights from <strong>Leaders.</strong>
-          </h2>
-          <p class="lv-sub" data-trn="leaders.sub">
-            Perspectives, reflections, and visions from leaders shaping Nepal's
-            democratic future.
-          </p>
-        </div>
-        <a href="#" class="view-all-outline-btn">
-          <span data-trn="btn.view_all_articles">View All Articles</span>
-          <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false">
-            <use href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-      </div>
-
-      <div class="leaders-grid">
-        <article class="leader-card">
-          <div class="leader-photo lp-1">
-            <span class="quote-bubble" aria-hidden="true">&#8220;</span>
-          </div>
-          <div class="leader-body">
-            <div class="leader-meta">
-              <strong class="leader-name" data-trn="leaders.leader1.name"
-                >Gagan Thapa</strong
-              >
-              <span class="leader-title" data-trn="leaders.leader1.title"
-                >President, Nepali Congress</span
-              >
-              <div class="leader-divider"></div>
-            </div>
-            <h3 data-trn="leaders.leader1.heading">
-              Democracy Must Be Lived, Not Just Celebrated
-            </h3>
-            <p data-trn="leaders.leader1.quote">
-              As we mark another year of our republic, I am reminded that
-              democracy is not a destination but a daily practice. It requires
-              each citizen to actively...
-            </p>
-            <div class="leader-footer">
-              <span class="read-time"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="leaders.leader1.read">2 min read</span></span
-              >
-              <a href="profile.html" class="read-more-link"
-                ><span data-trn="btn.read_more">Read More</span>
-                <svg
-                  class="svg-icon arrow-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-arrow-right"></use></svg
-              ></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="leader-card">
-          <div class="leader-photo lp-2">
-            <span class="quote-bubble" aria-hidden="true">&#8220;</span>
-          </div>
-          <div class="leader-body">
-            <div class="leader-meta">
-              <strong class="leader-name" data-trn="leaders.leader2.name"
-                >Sher Bahadur Deuba</strong
-              >
-              <span class="leader-title" data-trn="leaders.leader2.title"
-                >Former President, NC</span
-              >
-              <div class="leader-divider"></div>
-            </div>
-            <h3 data-trn="leaders.leader2.heading">
-              Building Prosperous Nepal Through Federal Democracy
-            </h3>
-            <p data-trn="leaders.leader2.quote">
-              Federalism is not just an administrative arrangement — it is our
-              commitment to inclusive development that reaches every citizen in
-              every corner of Nepal.
-            </p>
-            <div class="leader-footer">
-              <span class="read-time"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="leaders.leader2.read">3 min read</span></span
-              >
-              <a href="profile.html" class="read-more-link"
-                ><span data-trn="btn.read_more">Read More</span>
-                <svg
-                  class="svg-icon arrow-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-arrow-right"></use></svg
-              ></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="leader-card">
-          <div class="leader-photo lp-3">
-            <span class="quote-bubble" aria-hidden="true">&#8220;</span>
-          </div>
-          <div class="leader-body">
-            <div class="leader-meta">
-              <strong class="leader-name" data-trn="leaders.leader3.name"
-                >Prakash Man Singh</strong
-              >
-              <span class="leader-title" data-trn="leaders.leader3.title"
-                >Senior Leader, NC</span
-              >
-              <div class="leader-divider"></div>
-            </div>
-            <h3 data-trn="leaders.leader3.heading">
-              Youth Are the Backbone of Our Democratic Movement
-            </h3>
-            <p data-trn="leaders.leader3.quote">
-              When I see thousands of young Nepali joining our party and
-              engaging in politics, I see the future of our democracy. Their
-              energy and vision will shape tomorrow.
-            </p>
-            <div class="leader-footer">
-              <span class="read-time"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="leaders.leader3.read">2 min read</span></span
-              >
-              <a href="profile.html" class="read-more-link"
-                ><span data-trn="btn.read_more">Read More</span>
-                <svg
-                  class="svg-icon arrow-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-arrow-right"></use></svg
-              ></a>
-            </div>
-          </div>
-        </article>
-
-        <article class="leader-card">
-          <div class="leader-photo lp-4">
-            <span class="quote-bubble" aria-hidden="true">&#8220;</span>
-          </div>
-          <div class="leader-body">
-            <div class="leader-meta">
-              <strong class="leader-name" data-trn="leaders.leader4.name"
-                >Bimalendra Nidhi</strong
-              >
-              <span class="leader-title" data-trn="leaders.leader4.title"
-                >Vice President, NC</span
-              >
-              <div class="leader-divider"></div>
-            </div>
-            <h3 data-trn="leaders.leader4.heading">
-              Strengthening Grassroots Institutions for Real Federalism
-            </h3>
-            <p data-trn="leaders.leader4.quote">
-              True federalism lives at the ward level, not in Singha Durbar. Our
-              work now is to empower local governments with the resources and
-              authority they deserve.
-            </p>
-            <div class="leader-footer">
-              <span class="read-time"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="leaders.leader4.read">2 min read</span></span
-              >
-              <a href="profile.html" class="read-more-link"
-                ><span data-trn="btn.read_more">Read More</span>
-                <svg
-                  class="svg-icon arrow-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-arrow-right"></use></svg
-              ></a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Video News -->
-    <section class="videos-section">
-      <div class="section-top">
-        <div class="section-top-left">
-          <p class="lv-kicker" data-trn="videos.kicker">VIDEO NEWS</p>
-          <h2 class="lv-heading" data-trn="videos.heading">
-            Watch. Learn. <strong>Stay Informed.</strong>
-          </h2>
-          <p class="lv-sub" data-trn="videos.sub">
-            Short video clips on key issues, events, and updates.
-          </p>
-        </div>
-        <a href="#" class="view-all-filled-btn">
-          <span data-trn="btn.view_all_videos">View All Videos</span>
-          <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false">
-            <use href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-      </div>
-
-      <div class="videos-grid">
-        <article class="video-news-card">
-          <div class="video-thumb vt-1">
-            <img
-              src="pics/videothum1.jpg"
-              alt="BP Koirala's Democratic Philosophy thumbnail"
-              width="400"
-              height="225"
-              loading="lazy"
-            />
-            <button class="play-btn-circle" aria-label="Play video">
-              <svg
-                class="svg-icon play-fill-icon"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use href="#icon-play-fill"></use>
-              </svg>
-            </button>
-            <div class="video-meta-bar">
-              <span class="video-duration"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="videos.card1_dur">25m</span></span
-              >
-              <span class="watch-badge" data-trn="videos.watch">Watch</span>
-            </div>
-          </div>
-          <h3 data-trn="videos.card1_title">
-            BP Koirala's Democratic Philosophy
-          </h3>
-          <p data-trn="videos.card1_desc">
-            Explore the democratic vision and legacy of BP Koirala and its
-            relevance today.
-          </p>
-        </article>
-
-        <article class="video-news-card">
-          <div class="video-thumb vt-2">
-            <img
-              src="pics/videothum2.jpg"
-              alt="Understanding Nepal's Federal Structure thumbnail"
-              width="400"
-              height="225"
-              loading="lazy"
-            />
-            <button class="play-btn-circle" aria-label="Play video">
-              <svg
-                class="svg-icon play-fill-icon"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use href="#icon-play-fill"></use>
-              </svg>
-            </button>
-            <div class="video-meta-bar">
-              <span class="video-duration"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="videos.card2_dur">35m</span></span
-              >
-              <span class="watch-badge" data-trn="videos.watch">Watch</span>
-            </div>
-          </div>
-          <h3 data-trn="videos.card2_title">
-            Understanding Nepal's Federal Structure
-          </h3>
-          <p data-trn="videos.card2_desc">
-            A brief overview of federalism and its implementation in Nepal.
-          </p>
-        </article>
-
-        <article class="video-news-card">
-          <div class="video-thumb vt-3">
-            <img
-              src="pics/videothum3.jpg"
-              alt="Election Laws and Electoral Process thumbnail"
-              width="400"
-              height="225"
-              loading="lazy"
-            />
-            <button class="play-btn-circle" aria-label="Play video">
-              <svg
-                class="svg-icon play-fill-icon"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use href="#icon-play-fill"></use>
-              </svg>
-            </button>
-            <div class="video-meta-bar">
-              <span class="video-duration"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="videos.card3_dur">40m</span></span
-              >
-              <span class="watch-badge" data-trn="videos.watch">Watch</span>
-            </div>
-          </div>
-          <h3 data-trn="videos.card3_title">
-            Election Laws and Electoral Process in Nepal
-          </h3>
-          <p data-trn="videos.card3_desc">
-            How elections work in Nepal and the laws that govern them.
-          </p>
-        </article>
-
-        <article class="video-news-card">
-          <div class="video-thumb vt-4">
-            <img
-              src="pics/videothum4.jpg"
-              alt="Leadership and Governance thumbnail"
-              width="400"
-              height="225"
-              loading="lazy"
-            />
-            <button class="play-btn-circle" aria-label="Play video">
-              <svg
-                class="svg-icon play-fill-icon"
-                aria-hidden="true"
-                focusable="false"
-              >
-                <use href="#icon-play-fill"></use>
-              </svg>
-            </button>
-            <div class="video-meta-bar">
-              <span class="video-duration"
-                ><svg
-                  class="svg-icon small-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="#icon-clock"></use>
-                </svg>
-                <span data-trn="videos.card4_dur">30m</span></span
-              >
-              <span class="watch-badge" data-trn="videos.watch">Watch</span>
-            </div>
-          </div>
-          <h3 data-trn="videos.card4_title">
-            Leadership and Governance: Effective Political Leadership
-          </h3>
-          <p data-trn="videos.card4_desc">
-            Key principles of effective leadership in politics and governance.
-          </p>
-        </article>
-
-        <div class="explore-more-card">
-          <div class="play-outline-circle">
-            <svg
-              class="svg-icon play-fill-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-play-fill"></use>
-            </svg>
-          </div>
-          <h3 data-trn="videos.explore_title">Explore More Videos</h3>
-          <p data-trn="videos.explore_desc">
-            Browse our full video library and stay informed.
-          </p>
-          <a href="#" class="view-all-filled-btn">
-            <span data-trn="btn.view_all_videos">View All Videos</span>
-            <svg
-              class="svg-icon arrow-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-arrow-right"></use>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Podcast Section -->
-    <section class="podcast-section" aria-label="Podcasts">
-      <div class="section-top">
-        <div class="section-top-left">
-          <p class="lv-kicker" data-trn="podcast.kicker">PODCASTS</p>
-          <h2 class="lv-heading" data-trn="podcast.heading">
-            Listen to <strong>Voice of Democracy.</strong>
-          </h2>
-          <p class="lv-sub" data-trn="podcast.sub">
-            Deep-dive discussions on policy, history, and development in Nepal.
-          </p>
-        </div>
-      </div>
-
-      <div class="podcast-grid">
-        <!-- Left: Featured Latest Episode -->
-        <article class="featured-podcast-card">
-          <div class="podcast-cover">
-            <img
-              src="pics/1stthumnai-browser.jpg"
-              alt="Featured Podcast Cover"
-              loading="lazy"
-            />
-            <div class="mic-overlay">
-              <svg
-                class="svg-icon"
-                aria-hidden="true"
-                focusable="false"
-                style="width: 14px; height: 14px; stroke: #fff"
-              >
-                <use href="#icon-podcast"></use>
-              </svg>
-              <span data-trn="podcast.audio_only">Audio Only</span>
-            </div>
-          </div>
-          <div class="podcast-body">
-            <span class="badge red-badge" data-trn="podcast.badge_latest"
-              >LATEST EPISODE</span
-            >
-            <h3 data-trn="podcast.feat_title">
-              The Vision of BP Koirala in the 21st Century
-            </h3>
-            <div class="podcast-meta" data-trn="podcast.feat_meta">
-              Host: Gagan Thapa | Guest: Prof. Dr. Lok Raj Baral
-            </div>
-            <p class="podcast-desc" data-trn="podcast.feat_desc">
-              An in-depth analysis of democratic socialism and its practical
-              application in Nepal's modern economic landscape.
-            </p>
-
-            <!-- Sleek Mock Audio Player -->
-            <div class="audio-player">
-              <button
-                class="play-circle-btn"
-                aria-label="Play/Pause Podcast"
-                id="podcast-play-toggle"
-              >
-                <svg
-                  class="svg-icon play-fill-icon"
-                  aria-hidden="true"
-                  focusable="false"
-                  style="width: 18px; height: 18px"
-                  id="podcast-play-icon"
-                >
-                  <use href="#icon-play-fill"></use>
-                </svg>
-              </button>
-              <div class="audio-progress-container">
-                <div class="audio-progress-bar">
-                  <div class="audio-progress" style="width: 35%"></div>
+        <div class="composer">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
+          <div class="composer-body">
+            <textarea
+              class="compose-input"
+              id="composeInput"
+              placeholder="What's happening?"
+              oninput="onComposeInput()"
+              rows="1"
+            ></textarea>
+            <div class="composer-icons">
+              <div class="composer-icons-left">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="M21 15l-5-5L5 21" />
+                  </svg>
                 </div>
-                <div class="audio-track-time">
-                  <span
-                    id="podcast-time-elapsed"
-                    data-trn="podcast.feat_elapsed"
-                    >15:45</span
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
                   >
-                  <span id="podcast-time-total" data-trn="podcast.feat_duration"
-                    >45:12</span
+                    <rect x="2" y="6" width="20" height="12" rx="2" />
+                    <path d="M7 10v4M11 10v4M15 10v4" />
+                  </svg>
+                </div>
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
                   >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M9 9l6 6M9 15l6-6" />
+                  </svg>
+                </div>
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 6h16M4 12h10M4 18h7" />
+                    <circle cx="19" cy="18" r="2" />
+                  </svg>
+                </div>
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path
+                      d="M9 10h.01M15 10h.01M8 15c1.3 1 2.7 1.5 4 1.5s2.7-.5 4-1.5"
+                    />
+                  </svg>
+                </div>
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="4" width="18" height="17" rx="2" />
+                    <path d="M3 9h18M8 3v3M16 3v3" />
+                  </svg>
+                </div>
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 7-3.7A4.5 4.5 0 0 1 19 11c0 5.5-7 10-7 10z"
+                      fill="none"
+                    />
+                    <circle cx="12" cy="10" r="2.6" />
+                  </svg>
+                </div>
+              </div>
+              <button class="post-submit" id="postBtn" onclick="submitPost()">
+                Post
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TWEET 1 -->
+        <article class="tweet" id="tweet1">
+          <div class="tweet-avatar silhouette">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+            </svg>
+          </div>
+          <div class="tweet-body">
+            <div class="tweet-head">
+              <span class="tweet-name">NO CONTEXT HUMANS</span>
+              <svg class="verified-badge" viewBox="0 0 22 22">
+                <path
+                  fill="#15803D"
+                  d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.135-1.897-.135-.633-.45-1.214-.912-1.676-.462-.462-1.043-.777-1.676-.912-.633-.135-1.29-.088-1.897.135-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.018-1.273.215-1.813.57-.54.354-.972.852-1.246 1.439-.607-.223-1.264-.27-1.897-.135-.633.135-1.214.45-1.676.912-.462.462-.777 1.043-.912 1.676-.135.633-.088 1.29.135 1.897-.587.274-1.085.705-1.439 1.246-.354.54-.551 1.167-.569 1.813.018.646.215 1.273.57 1.813.354.54.852.972 1.438 1.246-.223.607-.27 1.264-.135 1.897.135.633.45 1.214.912 1.676.462.462 1.043.777 1.676.912.633.135 1.29.088 1.897-.135.274.587.705 1.085 1.246 1.439.54.354 1.167.551 1.813.569.646-.018 1.273-.215 1.813-.57.54-.354.972-.852 1.246-1.438.607.223 1.264.27 1.897.135.633-.135 1.214-.45 1.676-.912.462-.462.777-1.043.912-1.676.135-.633.088-1.29-.135-1.897.587-.274 1.085-.705 1.439-1.246.354-.54.551-1.167.569-1.813zm-11.564 3.566-3.32-3.319 1.414-1.414 1.906 1.905 4.926-4.925 1.414 1.414z"
+                />
+              </svg>
+              <span class="tweet-handle">@HumansNoContext</span>
+              <span class="tweet-dot">·</span>
+              <span class="tweet-time">11h</span>
+              <div class="tweet-more">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M9 9l6 6M9 15l6-6" />
+                  </svg>
+                </div>
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="5" cy="12" r="1.3" />
+                    <circle cx="12" cy="12" r="1.3" />
+                    <circle cx="19" cy="12" r="1.3" />
+                  </svg>
                 </div>
               </div>
             </div>
-          </div>
-        </article>
-
-        <!-- Right: Recent Podcast List -->
-        <div class="recent-podcast-list">
-          <!-- Item 1 -->
-          <div class="podcast-list-item">
-            <div class="podcast-thumb">
-              <svg
-                class="svg-icon"
-                aria-hidden="true"
-                focusable="false"
-                style="stroke-width: 2.2"
-              >
-                <use href="#icon-podcast"></use>
-              </svg>
-            </div>
-            <div class="podcast-item-info">
-              <h4 data-trn="podcast.list_item1_title">
-                Federalism: Decadence or Development?
-              </h4>
-              <div class="podcast-item-meta">
-                <span data-trn="podcast.list_item1_date">June 10, 2026</span>
-                <span>•</span>
-                <span data-trn="podcast.list_item1_dur">32m</span>
+            <div class="tweet-text">100% dad's idea</div>
+            <div class="tweet-media" onclick="playMedia(this)">
+              <img
+                src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=900&q=80"
+                alt="stairs video thumbnail"
+              />
+              <div class="media-duration">0:04</div>
+              <div class="play-overlay">
+                <div class="play-circle">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </div>
               </div>
             </div>
-            <button class="podcast-play-btn" aria-label="Play Episode">
-              <svg
-                class="svg-icon play-fill-icon"
-                aria-hidden="true"
-                focusable="false"
-                style="width: 14px; height: 14px"
-              >
-                <use href="#icon-play-fill"></use>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="podcast-list-item">
-            <div
-              class="podcast-thumb"
-              style="background: var(--soft-green); color: var(--green)"
-            >
-              <svg
-                class="svg-icon"
-                aria-hidden="true"
-                focusable="false"
-                style="stroke-width: 2.2"
-              >
-                <use href="#icon-podcast"></use>
-              </svg>
-            </div>
-            <div class="podcast-item-info">
-              <h4 data-trn="podcast.list_item2_title">
-                Youth Engagement in Democratic Institutions
-              </h4>
-              <div class="podcast-item-meta">
-                <span data-trn="podcast.list_item2_date">June 5, 2026</span>
-                <span>•</span>
-                <span data-trn="podcast.list_item2_dur">28m</span>
-              </div>
-            </div>
-            <button class="podcast-play-btn" aria-label="Play Episode">
-              <svg
-                class="svg-icon play-fill-icon"
-                aria-hidden="true"
-                focusable="false"
-                style="width: 14px; height: 14px"
-              >
-                <use href="#icon-play-fill"></use>
-              </svg>
-            </button>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="podcast-list-item">
-            <div class="podcast-thumb">
-              <svg
-                class="svg-icon"
-                aria-hidden="true"
-                focusable="false"
-                style="stroke-width: 2.2"
-              >
-                <use href="#icon-podcast"></use>
-              </svg>
-            </div>
-            <div class="podcast-item-info">
-              <h4 data-trn="podcast.list_item3_title">
-                Economic Policy for Inclusive Growth
-              </h4>
-              <div class="podcast-item-meta">
-                <span data-trn="podcast.list_item3_date">May 28, 2026</span>
-                <span>•</span>
-                <span data-trn="podcast.list_item3_dur">38m</span>
-              </div>
-            </div>
-            <button class="podcast-play-btn" aria-label="Play Episode">
-              <svg
-                class="svg-icon play-fill-icon"
-                aria-hidden="true"
-                focusable="false"
-                style="width: 14px; height: 14px"
-              >
-                <use href="#icon-play-fill"></use>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="news-preview-section" aria-labelledby="top-stories-heading">
-      <div class="top-stories-panel">
-        <div class="news-panel-header">
-          <h2 id="top-stories-heading" data-trn="news.heading">Top Stories</h2>
-          <a href="#" class="news-view-link">
-            <span data-trn="news.view_all">View All Articles</span>
-            <svg
-              class="svg-icon arrow-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-arrow-right"></use>
-            </svg>
-          </a>
-        </div>
-
-        <div class="top-stories-grid">
-          <article class="top-story-card">
-            <img
-              src="pics/gaganthapa.jpg"
-              alt="Gagan Thapa speaking at Nepali Congress event"
-              width="400"
-              height="260"
-              loading="lazy"
-            />
-            <div class="top-story-body">
-              <span class="story-label party" data-trn="news.label_party"
-                >Party News</span
-              >
-              <h3 data-trn="news.story1.title">
-                Gagan Thapa Calls for National Unity Ahead of Historic
-                Provincial By-Elections
-              </h3>
-              <p data-trn="news.story1.desc">
-                NC President Sher Bahadur Deuba addressed a 50,000-strong
-                gathering in Kathmandu, urging all democratic forces...
-              </p>
-              <div class="story-meta">
-                <time datetime="2026-06-04">
+            <div class="tweet-actions">
+              <div class="tweet-action reply" onclick="openModal(event)">
+                <div class="icon-btn">
                   <svg
-                    class="svg-icon small-icon"
-                    aria-hidden="true"
-                    focusable="false"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
                   >
-                    <use href="#icon-calendar"></use>
+                    <path
+                      d="M21 12c0 4.4-4 8-9 8-1.4 0-2.7-.2-3.9-.7L3 21l1.8-4.4C4.3 15.5 4 13.8 4 12c0-4.4 4-8 9-8s8 3.6 8 8z"
+                    />
                   </svg>
-                  <span data-trn="news.story1.date">June 4, 2026</span>
-                </time>
-                <span data-trn="news.story1.read">5 min read</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="top-story-card">
-            <img
-              src="pics/third-browser.jpg"
-              alt="Party leader addressing a coalition partners meeting"
-              width="400"
-              height="260"
-              loading="lazy"
-            />
-            <div class="top-story-body">
-              <span class="story-label party" data-trn="news.label_party"
-                >Party News</span
-              >
-              <h3 data-trn="news.story2.title">
-                Gagan Thapa meets coalition partners to discuss government
-                priorities
-              </h3>
-              <p data-trn="news.story2.desc">
-                NC President Deuba held a key meeting with Maoist leadership to
-                discuss the long-term stability and governance...
-              </p>
-              <div class="story-meta">
-                <time datetime="2026-06-04">
-                  <svg
-                    class="svg-icon small-icon"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use href="#icon-calendar"></use>
-                  </svg>
-                  <span data-trn="news.story2.date">June 4, 2026</span>
-                </time>
-                <span data-trn="news.story2.read">4 min read</span>
-              </div>
-            </div>
-          </article>
-
-          <article class="top-story-card">
-            <img
-              src="pics/forththum-browser.jpg"
-              alt="Nepali Congress working committee discussion"
-              width="400"
-              height="260"
-              loading="lazy"
-            />
-            <div class="top-story-body">
-              <span class="story-label organization" data-trn="news.label_org"
-                >Organization</span
-              >
-              <h3 data-trn="news.story3.title">
-                Central Working Committee discusses organizational strengthening
-                drive
-              </h3>
-              <p data-trn="news.story3.desc">
-                The meeting focused on expanding party presence at the
-                grassroots and preparing for future political challenges.
-              </p>
-              <div class="story-meta">
-                <time datetime="2026-06-03">
-                  <svg
-                    class="svg-icon small-icon"
-                    aria-hidden="true"
-                    focusable="false"
-                  >
-                    <use href="#icon-calendar"></use>
-                  </svg>
-                  <span data-trn="news.story3.date">June 3, 2026</span>
-                </time>
-                <span data-trn="news.story3.read">6 min read</span>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <aside class="glance-panel" aria-labelledby="glance-heading">
-        <h2 id="glance-heading" data-trn="glance.heading">At A Glance</h2>
-        <div class="glance-list">
-          <a href="#" class="glance-item">
-            <span class="glance-icon">
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-users"></use>
-              </svg>
-            </span>
-            <span class="glance-copy">
-              <strong data-trn="glance.item1.title">Our Leadership</strong>
-              <span data-trn="glance.item1.desc"
-                >Meet the leaders guiding the party with vision and
-                commitment.</span
-              >
-            </span>
-            <svg
-              class="svg-icon chevron-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-chevron-right"></use>
-            </svg>
-          </a>
-
-          <a href="#" class="glance-item">
-            <span class="glance-icon">
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-book-open"></use>
-              </svg>
-            </span>
-            <span class="glance-copy">
-              <strong data-trn="glance.item2.title">Our History</strong>
-              <span data-trn="glance.item2.desc"
-                >Explore the rich legacy and journey of Nepali Congress.</span
-              >
-            </span>
-            <svg
-              class="svg-icon chevron-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-chevron-right"></use>
-            </svg>
-          </a>
-
-          <a href="#" class="glance-item">
-            <span class="glance-icon">
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-target"></use>
-              </svg>
-            </span>
-            <span class="glance-copy">
-              <strong data-trn="glance.item3.title">Our Vision</strong>
-              <span data-trn="glance.item3.desc"
-                >Building a democratic, inclusive and prosperous Nepal.</span
-              >
-            </span>
-            <svg
-              class="svg-icon chevron-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-chevron-right"></use>
-            </svg>
-          </a>
-
-          <a href="#" class="glance-item">
-            <span class="glance-icon">
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-hand-heart"></use>
-              </svg>
-            </span>
-            <span class="glance-copy">
-              <strong data-trn="glance.item4.title">Get Involved</strong>
-              <span data-trn="glance.item4.desc"
-                >Join hands with us and be a part of the change.</span
-              >
-            </span>
-            <svg
-              class="svg-icon chevron-icon"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <use href="#icon-chevron-right"></use>
-            </svg>
-          </a>
-        </div>
-      </aside>
-    </section>
-
-    <section class="cta-banner">
-      <div class="cta-left">
-        <img
-          class="cta-flag"
-          src="pics/Nepali-Congress-Flag-browser.jpg"
-          alt="Nepali Congress flag"
-        />
-        <div class="cta-copy">
-          <h2 data-trn="cta.heading">
-            Be a Part of the <span class="cta-accent">Change</span>
-          </h2>
-          <p data-trn="cta.desc">
-            Join thousands of Nepalese working, growing, and working together
-            for a better Nepal.
-          </p>
-        </div>
-      </div>
-      <div class="cta-actions">
-        <a href="#" class="cta-primary-btn">
-          <svg class="svg-icon" aria-hidden="true" focusable="false">
-            <use href="#icon-users"></use>
-          </svg>
-          <span data-trn="cta.join">Join Nepali Congress</span>
-          <svg class="svg-icon arrow-icon" aria-hidden="true" focusable="false">
-            <use href="#icon-arrow-right"></use>
-          </svg>
-        </a>
-        <a href="#" class="cta-outline-btn" data-trn="cta.explore"
-          >Explore Resources</a
-        >
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="#" class="footer-logo">
-            <img
-              src="pics/Nepali-Congress-Flag-browser.jpg"
-              alt="Nepali Congress flag"
-              class="footer-flag"
-            />
-            <div>
-              <div class="footer-brand-title" data-trn="brand.footer_title">
-                नेपाली कांग्रेस
+                </div>
+                <span id="replyCount">64</span>
               </div>
               <div
-                class="footer-brand-subtitle"
-                data-trn="brand.footer_subtitle"
+                class="tweet-action retweet"
+                onclick="toggleRetweet(this, event)"
               >
-                Official Website of Nepali Congress
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 1l4 4-4 4" />
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                    <path d="M7 23l-4-4 4-4" />
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+                  </svg>
+                </div>
+                <span class="rt-count">78</span>
+              </div>
+              <div class="tweet-action like" onclick="toggleLike(this, event)">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 7-3.7A4.5 4.5 0 0 1 19 11c0 5.5-7 10-7 10z"
+                    />
+                  </svg>
+                </div>
+                <span class="like-count">2.3K</span>
+              </div>
+              <div class="tweet-action views">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 19V10M10 19V4M16 19v-7M22 19H2" />
+                  </svg>
+                </div>
+                <span>109K</span>
+              </div>
+              <div
+                class="tweet-action bookmark"
+                onclick="toggleBookmark(this, event)"
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M6 3h12v18l-6-4-6 4z" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="tweet-action share"
+                onclick="
+                  showToast('Link copied');
+                  event.stopPropagation();
+                "
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 3v12M7 8l5-5 5 5" />
+                    <path d="M5 21h14" />
+                  </svg>
+                </div>
               </div>
             </div>
-          </a>
-          <p class="footer-desc" data-trn="footer.desc">
-            Empowering the nation with inclusive politics, social initiatives
-            &amp; building a prosperous, democratic Nepal.
-          </p>
-          <div class="social-icons">
-            <a
-              href="#"
-              class="social-btn"
-              aria-label="Facebook"
-              data-trn="footer.facebook"
-            >
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-facebook"></use>
+          </div>
+        </article>
+
+        <!-- TWEET 2 -->
+        <article class="tweet">
+          <div class="tweet-avatar">
+            <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="" />
+          </div>
+          <div class="tweet-body">
+            <div class="tweet-head">
+              <span class="tweet-name">Dr. Clown, PhD</span>
+              <svg class="verified-badge" viewBox="0 0 22 22">
+                <path
+                  fill="#15803D"
+                  d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.135-1.897-.135-.633-.45-1.214-.912-1.676-.462-.462-1.043-.777-1.676-.912-.633-.135-1.29-.088-1.897.135-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.018-1.273.215-1.813.57-.54.354-.972.852-1.246 1.439-.607-.223-1.264-.27-1.897-.135-.633.135-1.214.45-1.676.912-.462.462-.777 1.043-.912 1.676-.135.633-.088 1.29.135 1.897-.587.274-1.085.705-1.439 1.246-.354.54-.551 1.167-.569 1.813.018.646.215 1.273.57 1.813.354.54.852.972 1.438 1.246-.223.607-.27 1.264-.135 1.897.135.633.45 1.214.912 1.676.462.462 1.043.777 1.676.912.633.135 1.29.088 1.897-.135.274.587.705 1.085 1.246 1.439.54.354 1.167.551 1.813.569.646-.018 1.273-.215 1.813-.57.54-.354.972-.852 1.246-1.438.607.223 1.264.27 1.897.135.633-.135 1.214-.45 1.676-.912.462-.462.777-1.043.912-1.676.135-.633.088-1.29-.135-1.897.587-.274 1.085-.705 1.439-1.246.354-.54.551-1.167.569-1.813zm-11.564 3.566-3.32-3.319 1.414-1.414 1.906 1.905 4.926-4.925 1.414 1.414z"
+                />
               </svg>
-            </a>
-            <a
-              href="#"
-              class="social-btn"
-              aria-label="Twitter"
-              data-trn="footer.twitter"
+              <span style="font-size: 15px">🤡</span>
+              <span class="tweet-handle">@DrClownPhD</span>
+              <span class="tweet-dot">·</span>
+              <span class="tweet-time">12h</span>
+              <div class="tweet-more">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M9 9l6 6M9 15l6-6" />
+                  </svg>
+                </div>
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="5" cy="12" r="1.3" />
+                    <circle cx="12" cy="12" r="1.3" />
+                    <circle cx="19" cy="12" r="1.3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="tweet-text">
+              A little bit of faith in humanity restored… 🥹
+            </div>
+            <div class="tweet-media" onclick="playMedia(this)">
+              <img
+                src="https://images.unsplash.com/photo-1593642634367-d91a135587b5?w=900&q=80"
+                alt="video thumbnail"
+              />
+              <div class="play-overlay">
+                <div class="play-circle">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <!-- RIGHT SIDEBAR -->
+      <aside class="right">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24">
+            <path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm10 2-5.4-5.4" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Search Pulse"
+            oninput="showToast('Searching: ' + this.value)"
+          />
+        </div>
+
+        <div class="panel" id="newsPanel">
+          <div class="panel-title">
+            Today's News
+            <span
+              class="close-x"
+              onclick="document.getElementById('newsPanel').remove()"
             >
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-twitter"></use>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 5l14 14M19 5L5 19" />
               </svg>
-            </a>
-            <a
-              href="#"
-              class="social-btn"
-              aria-label="Instagram"
-              data-trn="footer.instagram"
-            >
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-instagram"></use>
-              </svg>
-            </a>
-            <a
-              href="#"
-              class="social-btn"
-              aria-label="YouTube"
-              data-trn="footer.youtube"
-            >
-              <svg class="svg-icon" aria-hidden="true" focusable="false">
-                <use href="#icon-youtube"></use>
-              </svg>
-            </a>
+            </span>
+          </div>
+          <div class="news-item" onclick="showToast('Opening article…')">
+            <div class="news-headline">
+              Dark Web Epstein Files Leak Rumor Spreads Before Trump's State of
+              the Union
+            </div>
+            <div class="news-meta">
+              <span class="news-avatars"
+                ><span
+                  ><img
+                    src="https://randomuser.me/api/portraits/women/12.jpg" /></span
+                ><span
+                  ><img
+                    src="https://randomuser.me/api/portraits/men/41.jpg" /></span
+              ></span>
+              <span>3 hours ago · News · 15.7K posts</span>
+            </div>
+          </div>
+          <div class="news-item" onclick="showToast('Opening article…')">
+            <div class="news-headline">
+              NYPD Hunts Suspects After Officers Hurt in Washington Square Park
+              Snow Assault
+            </div>
+            <div class="news-meta">
+              <span class="news-avatars"
+                ><span
+                  ><img
+                    src="https://randomuser.me/api/portraits/women/24.jpg" /></span
+                ><span
+                  ><img
+                    src="https://randomuser.me/api/portraits/men/55.jpg" /></span
+              ></span>
+              <span>2 hours ago · News · 49K posts</span>
+            </div>
+          </div>
+          <div class="news-item" onclick="showToast('Opening article…')">
+            <div class="news-headline">
+              Martin Short's Daughter Katherine Dies at 42 in Apparent Suicide
+            </div>
+            <div class="news-meta">
+              <span class="news-avatars"
+                ><span
+                  ><img
+                    src="https://randomuser.me/api/portraits/women/68.jpg" /></span
+                ><span
+                  ><img
+                    src="https://randomuser.me/api/portraits/men/72.jpg" /></span
+              ></span>
+              <span>6 hours ago · Entertainment · 20.9K posts</span>
+            </div>
           </div>
         </div>
 
-        <nav class="footer-nav" aria-label="Quick links">
-          <h4 data-trn="footer.title_links">Quick Links</h4>
-          <ul>
-            <li><a href="#" data-trn="nav.home">Home</a></li>
-            <li><a href="#" data-trn="nav.about">About</a></li>
-            <li><a href="#" data-trn="nav.videos">Videos</a></li>
-            <li><a href="#" data-trn="nav.calendar">Calendar</a></li>
-            <li><a href="#" data-trn="nav.documents">Documents</a></li>
-            <li><a href="#">Press/Media</a></li>
-          </ul>
-        </nav>
+        <div class="panel">
+          <div class="panel-title">What's happening</div>
+          <div class="trend-item" onclick="showToast('Opening #SOTU2026')">
+            <div class="trend-row">
+              <div>
+                <div class="trend-cat">Politics · Trending</div>
+                <div class="trend-name">#SOTU2026</div>
+              </div>
+              <span class="trend-dots"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="5" cy="12" r="1.3" />
+                  <circle cx="12" cy="12" r="1.3" />
+                  <circle cx="19" cy="12" r="1.3" /></svg
+              ></span>
+            </div>
+          </div>
+          <div
+            class="trend-item"
+            onclick="showToast('Opening State of the Union')"
+          >
+            <div class="trend-row">
+              <div>
+                <div class="trend-cat">Politics · Trending</div>
+                <div class="trend-name">State of the Union</div>
+                <div class="trend-sub">
+                  Trending with
+                  <a href="#" onclick="event.stopPropagation()">Haley Robson</a
+                  >,
+                  <a href="#" onclick="event.stopPropagation()">U.S. Capitol</a>
+                </div>
+              </div>
+              <span class="trend-dots"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="5" cy="12" r="1.3" />
+                  <circle cx="12" cy="12" r="1.3" />
+                  <circle cx="19" cy="12" r="1.3" /></svg
+              ></span>
+            </div>
+          </div>
+          <div class="trend-item" onclick="showToast('Opening Oweh')">
+            <div class="trend-row">
+              <div>
+                <div class="trend-cat">Sports · Trending</div>
+                <div class="trend-name">Oweh</div>
+              </div>
+              <span class="trend-dots"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="5" cy="12" r="1.3" />
+                  <circle cx="12" cy="12" r="1.3" />
+                  <circle cx="19" cy="12" r="1.3" /></svg
+              ></span>
+            </div>
+          </div>
+          <div class="trend-item" onclick="showToast('Opening Al Green')">
+            <div class="trend-row">
+              <div>
+                <div class="trend-cat">Politics · Trending</div>
+                <div class="trend-name">Al Green</div>
+              </div>
+              <span class="trend-dots"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="5" cy="12" r="1.3" />
+                  <circle cx="12" cy="12" r="1.3" />
+                  <circle cx="19" cy="12" r="1.3" /></svg
+              ></span>
+            </div>
+          </div>
+          <div class="show-more" onclick="showToast('Loading more trends…')">
+            Show more
+          </div>
+        </div>
 
-        <nav class="footer-nav" aria-label="Resources">
-          <h4 data-trn="footer.title_resources">Resources</h4>
-          <ul>
-            <li><a href="#">Learning Videos</a></li>
-            <li><a href="#">Guidelines</a></li>
-            <li><a href="#">Membership Info</a></li>
-            <li><a href="#">Downloads</a></li>
-            <li><a href="#">FAQs</a></li>
-          </ul>
-        </nav>
-
-        <nav class="footer-nav" aria-label="Support">
-          <h4 data-trn="footer.title_support">Support</h4>
-          <ul>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Use</a></li>
-          </ul>
-        </nav>
-
-        <div class="footer-newsletter">
-          <h4 data-trn="footer.title_newsletter">Subscribe to Newsletter</h4>
-          <p data-trn="footer.desc_newsletter">
-            Stay informed with updates on news, events and more.
-          </p>
-          <form class="newsletter-form" onsubmit="return false;">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              aria-label="Email address"
-              data-trn="footer.input_newsletter"
+        <div class="panel">
+          <div class="panel-title">Who to follow</div>
+          <div class="follow-item">
+            <img
+              class="follow-avatar"
+              src="https://randomuser.me/api/portraits/men/77.jpg"
+              alt=""
             />
-            <button type="submit" data-trn="footer.btn_subscribe">
-              Subscribe
-            </button>
-          </form>
+            <div style="flex: 1; min-width: 0">
+              <div class="follow-name">Low Quality Memes <span>🤡</span></div>
+              <div class="follow-handle">@ipostlqmemes</div>
+            </div>
+            <div class="follow-pill" onclick="toggleFollow(this)">
+              <span class="pill-label-default">Follow</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <span>Terms of Service</span><span>·</span> <span>Privacy Policy</span
+          ><span>·</span> <span>Cookie Policy</span><span>·</span>
+          <span>Accessibility</span><span>·</span> <span>Ads info</span
+          ><span>·</span>
+          <span>More</span>
+          <span style="width: 100%; color: var(--muted-foreground)"
+            >© 2026 Pulse Inc.</span
+          >
+        </div>
+      </aside>
+    </div>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="float-btns">
+      <div class="float-btn" onclick="showToast('Assistant is thinking…')">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M9 9l6 6M9 15l6-6" />
+        </svg>
+      </div>
+      <div class="float-btn" onclick="showToast('No new messages')">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M4 4h16v12H7l-3 3z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- REPLY MODAL OVERLAY -->
+    <div class="overlay hidden" id="overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <div class="modal-close" onclick="closeModal()">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 5l14 14M19 5L5 19" />
+            </svg>
+          </div>
+          <div class="modal-drafts" onclick="showToast('No saved drafts')">
+            Drafts
+          </div>
+        </div>
+
+        <div class="modal-context">
+          <div class="ctx-avatar">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 22c0-4.4 3.6-8 8-8s8 3.6 8 8" />
+            </svg>
+          </div>
+          <div class="ctx-body">
+            <div class="ctx-head">
+              <span class="ctx-name">NO CONTEXT HUMANS</span>
+              <svg class="verified-badge" viewBox="0 0 22 22">
+                <path
+                  fill="#15803D"
+                  d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.135-1.897-.135-.633-.45-1.214-.912-1.676-.462-.462-1.043-.777-1.676-.912-.633-.135-1.29-.088-1.897.135-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.018-1.273.215-1.813.57-.54.354-.972.852-1.246 1.439-.607-.223-1.264-.27-1.897-.135-.633.135-1.214.45-1.676.912-.462.462-.777 1.043-.912 1.676-.135.633-.088 1.29.135 1.897-.587.274-1.085.705-1.439 1.246-.354.54-.551 1.167-.569 1.813.018.646.215 1.273.57 1.813.354.54.852.972 1.438 1.246-.223.607-.27 1.264-.135 1.897.135.633.45 1.214.912 1.676.462.462 1.043.777 1.676.912.633.135 1.29.088 1.897-.135.274.587.705 1.085 1.246 1.439.54.354 1.167.551 1.813.569.646-.018 1.273-.215 1.813-.57.54-.354.972-.852 1.246-1.438.607.223 1.264.27 1.897.135.633-.135 1.214-.45 1.676-.912.462-.462.777-1.043.912-1.676.135-.633.088-1.29-.135-1.897.587-.274 1.085-.705 1.439-1.246.354-.54.551-1.167.569-1.813zm-11.564 3.566-3.32-3.319 1.414-1.414 1.906 1.905 4.926-4.925 1.414 1.414z"
+                />
+              </svg>
+              <span class="ctx-handle">@HumansNoContext · 18h</span>
+            </div>
+            <div class="ctx-text">
+              100% dad's idea
+              <span class="ctx-link">pic.pulse.app/hRmyuinWUP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="thread-line-row">
+          <div class="thread-line-col"><div class="thread-line"></div></div>
+          <div class="replying-to">
+            Replying to <a href="#">@HumansNoContext</a>
+          </div>
+        </div>
+
+        <div class="reply-compose">
+          <img
+            class="rc-avatar"
+            src="https://randomuser.me/api/portraits/men/32.jpg"
+            alt=""
+          />
+          <div class="rc-body">
+            <textarea
+              class="rc-input"
+              id="rcInput"
+              rows="2"
+              oninput="autoGrow(this)"
+            >
+LOL, the baby's probably screaming at their parents… internally.</textarea
+            >
+            <div class="gif-attach" id="gifAttach">
+              <img
+                src="https://images.unsplash.com/photo-1492725764893-90b379c2b6e7?w=700&q=80"
+                alt="baby gif"
+                id="gifImg"
+              />
+              <div class="gif-remove" onclick="removeGif()">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 5l14 14M19 5L5 19"
+                    stroke="#fff"
+                    stroke-width="2.5"
+                  />
+                </svg>
+              </div>
+              <div class="gif-play" id="gifPlay" onclick="playGif()">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+              </div>
+              <div class="gif-tag">GIF</div>
+            </div>
+            <div
+              class="add-desc"
+              id="addDescBtn"
+              onclick="showToast('Description added')"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <path d="M21 15l-5-5L5 21" />
+              </svg>
+              Add description
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-toolbar">
+          <div class="modal-toolbar-left">
+            <div class="icon-btn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <path d="M21 15l-5-5L5 21" />
+              </svg>
+            </div>
+            <div class="icon-btn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="6" width="20" height="12" rx="2" />
+                <path d="M7 10v4M11 10v4M15 10v4" />
+              </svg>
+            </div>
+            <div class="icon-btn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M9 9l6 6M9 15l6-6" />
+              </svg>
+            </div>
+            <div class="icon-btn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M4 6h16M4 12h10M4 18h7" />
+                <circle cx="19" cy="18" r="2" />
+              </svg>
+            </div>
+            <div class="icon-btn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path
+                  d="M9 10h.01M15 10h.01M8 15c1.3 1 2.7 1.5 4 1.5s2.7-.5 4-1.5"
+                />
+              </svg>
+            </div>
+            <div class="icon-btn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="4" width="18" height="17" rx="2" />
+                <path d="M3 9h18M8 3v3M16 3v3" />
+              </svg>
+            </div>
+            <div class="icon-btn">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 7-3.7A4.5 4.5 0 0 1 19 11c0 5.5-7 10-7 10z"
+                />
+                <circle cx="12" cy="10" r="2.4" />
+              </svg>
+            </div>
+            <div
+              class="icon-btn"
+              style="color: #0b2027; font-weight: 800; font-size: 14px"
+            >
+              B
+            </div>
+            <div
+              class="icon-btn"
+              style="color: #0b2027; font-style: italic; font-size: 14px"
+            >
+              I
+            </div>
+          </div>
+          <button class="reply-submit" onclick="submitReply()">Reply</button>
         </div>
       </div>
+    </div>
 
-      <div class="footer-bottom">
-        <span data-trn="footer.copyright"
-          >© 2025 Nepali Congress. All Rights Reserved.</span
-        >
-        <span data-trn="footer.made_in"
-          >Made with <span class="heart">❤</span> in Nepal</span
-        >
-      </div>
-    </footer>
+    <div class="toast" id="toast"></div>
+
+    <script>
+      function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => t.classList.remove("show"), 2200);
+      }
+      function switchTab(el) {
+        document
+          .querySelectorAll(".tab")
+          .forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+      }
+      function switchNav(el) {
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.remove("active"));
+        el.classList.add("active");
+        if (el.textContent.trim() === "Notifications") {
+          const badge = document.getElementById("notif-badge");
+          if (badge) badge.remove();
+        }
+      }
+      function onComposeInput() {
+        const input = document.getElementById("composeInput");
+        const btn = document.getElementById("postBtn");
+        btn.classList.toggle("enabled", input.value.trim().length > 0);
+        input.style.height = "auto";
+        input.style.height = input.scrollHeight + "px";
+      }
+      function submitPost() {
+        const input = document.getElementById("composeInput");
+        if (!input.value.trim()) return;
+        showToast("Your post was sent!");
+        input.value = "";
+        onComposeInput();
+      }
+      function playMedia(el) {
+        el.querySelector(".play-overlay").classList.add("played");
+      }
+      function toggleLike(el, e) {
+        e.stopPropagation();
+        const countEl = el.querySelector(".like-count");
+        const liked = el.classList.toggle("liked");
+        countEl.textContent = liked ? "2.4K" : "2.3K";
+        if (liked) {
+          el.querySelector("svg").classList.add("pop");
+          setTimeout(
+            () => el.querySelector("svg").classList.remove("pop"),
+            300,
+          );
+        }
+      }
+      function toggleRetweet(el, e) {
+        e.stopPropagation();
+        const rt = el.classList.toggle("retweeted");
+        el.querySelector(".rt-count").textContent = rt ? "79" : "78";
+        if (rt) showToast("Reposted");
+      }
+      function toggleBookmark(el, e) {
+        e.stopPropagation();
+        const bm = el.classList.toggle("bookmarked");
+        showToast(bm ? "Added to Bookmarks" : "Removed from Bookmarks");
+      }
+      function toggleFollow(el) {
+        const following = el.classList.toggle("following");
+        el.innerHTML = following
+          ? '<span class="pill-label-default">Following</span><span class="pill-label-hover">Unfollow</span>'
+          : '<span class="pill-label-default">Follow</span>';
+      }
+      function openModal(e) {
+        if (e) e.stopPropagation();
+        document.getElementById("overlay").classList.remove("hidden");
+      }
+      function closeModal() {
+        document.getElementById("overlay").classList.add("hidden");
+      }
+      function autoGrow(el) {
+        el.style.height = "auto";
+        el.style.height = el.scrollHeight + "px";
+      }
+      function playGif() {
+        document.getElementById("gifPlay").style.display = "none";
+      }
+      function removeGif() {
+        document.getElementById("gifAttach").remove();
+      }
+      function submitReply() {
+        showToast("Your reply was sent!");
+        closeModal();
+      }
+      document
+        .getElementById("overlay")
+        .addEventListener("click", function (e) {
+          if (e.target === this) closeModal();
+        });
+    </script>
   </body>
 </html>
