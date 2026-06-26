@@ -9,9 +9,7 @@
       rel="stylesheet"
     />
     <style>
-      /* ─── shadcn/ui-aligned design tokens ─── */
       :root {
-        /* shadcn core */
         --background: #ffffff;
         --foreground: #0b2027;
         --card: #f7f9f9;
@@ -31,9 +29,7 @@
         --border: #e4eae8;
         --input: #e4eae8;
         --ring: #15803d;
-        --radius: 0.5rem; /* shadcn default */
-
-        /* brand */
+        --radius: 0.5rem;
         --brand: #15803d;
         --brand-hover: #136b34;
         --brand-muted: rgba(21, 128, 61, 0.1);
@@ -42,7 +38,6 @@
         --like: #fb3640;
         --like-muted: rgba(251, 54, 64, 0.1);
       }
-
       *,
       *::before,
       *::after {
@@ -67,8 +62,6 @@
         font-size: 15px;
         line-height: 20px;
       }
-
-      /* Space Grotesk for display elements — mirrors shadcn's font-semibold headings */
       h1,
       h2,
       h3,
@@ -81,24 +74,23 @@
       .modal-drafts,
       .post-btn,
       .reply-submit,
-      .post-submit {
+      .post-submit,
+      .reels-title {
         font-family:
           "Space Grotesk",
           "Inter",
           -apple-system,
           sans-serif;
       }
-
       a {
         color: inherit;
         text-decoration: none;
       }
 
       /* ─── Layout ─── */
-      /* Tight 3-col grid; no excessive outer margin */
       .app {
         display: grid;
-        grid-template-columns: 240px 598px 330px;
+        grid-template-columns: 260px 660px 380px;
         width: fit-content;
         margin: 0 auto;
         min-height: 100vh;
@@ -130,7 +122,6 @@
         width: 24px;
         height: 24px;
       }
-
       .nav-list {
         list-style: none;
         margin: 0;
@@ -142,11 +133,11 @@
         gap: 16px;
         padding: 10px 14px;
         border-radius: 9999px;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 400;
         cursor: pointer;
         width: fit-content;
-        max-width: 216px;
+        max-width: 240px;
         color: var(--foreground);
         position: relative;
         transition: background 0.15s;
@@ -161,11 +152,10 @@
         font-weight: 700;
       }
       .nav-item svg {
-        width: 24px;
-        height: 24px;
+        width: 22px;
+        height: 22px;
         flex-shrink: 0;
       }
-
       .nav-icon-wrap {
         position: relative;
       }
@@ -185,16 +175,21 @@
         justify-content: center;
       }
 
+      .nav-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 6px 14px;
+      }
+
       .post-btn-wrap {
         margin-top: 14px;
       }
-      /* shadcn Button (default variant) */
       .post-btn {
         background: var(--primary);
         color: var(--primary-foreground);
         border: none;
         width: 100%;
-        max-width: 216px;
+        max-width: 240px;
         padding: 13px 0;
         border-radius: 9999px;
         font-size: 16px;
@@ -205,7 +200,6 @@
       .post-btn:hover {
         opacity: 0.9;
       }
-
       .nav-spacer {
         flex: 1;
       }
@@ -216,7 +210,7 @@
         padding: 10px 12px;
         border-radius: 9999px;
         cursor: pointer;
-        max-width: 216px;
+        max-width: 240px;
         transition: background 0.15s;
       }
       .nav-account:hover {
@@ -257,7 +251,7 @@
       .main-header {
         position: sticky;
         top: 0;
-        background: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.88);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         z-index: 5;
@@ -310,8 +304,6 @@
         flex: 1;
         padding-top: 6px;
       }
-
-      /* shadcn icon-button */
       .icon-btn {
         width: 34px;
         height: 34px;
@@ -330,7 +322,6 @@
         width: 18px;
         height: 18px;
       }
-
       .composer-icons {
         display: flex;
         align-items: center;
@@ -340,8 +331,6 @@
         display: flex;
         gap: 2px;
       }
-
-      /* shadcn Badge-style disabled post button */
       .post-submit {
         background: #9abfaa;
         color: #fff;
@@ -364,7 +353,6 @@
       .reply-submit:active {
         transform: scale(0.97);
       }
-
       textarea.compose-input,
       textarea.rc-input {
         width: 100%;
@@ -384,7 +372,252 @@
         margin-bottom: 8px;
       }
 
-      /* Tweet */
+      /* ─── REELS SECTION ─── */
+      .reels-section {
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0 0 0;
+      }
+      .reels-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px 10px 16px;
+      }
+      .reels-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .reels-title-icon {
+        width: 26px;
+        height: 26px;
+        background: var(--foreground);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .reels-title-icon svg {
+        width: 14px;
+        height: 14px;
+        fill: #fff;
+      }
+      .reels-more-btn {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        color: var(--muted-foreground);
+        cursor: pointer;
+        transition: background 0.12s;
+      }
+      .reels-more-btn:hover {
+        background: var(--secondary);
+      }
+      .reels-more-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* Reels scroll container — relative so arrows sit on top */
+      .reels-scroll-wrap {
+        position: relative;
+        /* give arrows room to breathe without clipping scroll content */
+      }
+
+      /* Left/right fade masks */
+      .reels-scroll-wrap::before,
+      .reels-scroll-wrap::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 14px;
+        width: 40px;
+        pointer-events: none;
+        z-index: 3;
+      }
+      .reels-scroll-wrap::before {
+        left: 0;
+        background: linear-gradient(to right, var(--background), transparent);
+      }
+      .reels-scroll-wrap::after {
+        right: 0;
+        background: linear-gradient(to left, var(--background), transparent);
+      }
+
+      .reels-scroll {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 0 16px 14px 16px;
+        scrollbar-width: none;
+        /* ensure cards aren't clipped by parent overflow:hidden */
+        -webkit-overflow-scrolling: touch;
+      }
+      .reels-scroll::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* ── Reel card ── */
+      .reel-card {
+        flex-shrink: 0;
+        width: 160px;
+        border-radius: 14px;
+        overflow: hidden;
+        position: relative; /* stacking context for absolute children */
+        cursor: pointer;
+        background: #111;
+        /* transition only on transform, not overflow */
+        transition: transform 0.2s;
+      }
+      .reel-card:hover {
+        transform: scale(1.03);
+      }
+
+      .reel-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+        /* no transform here — parent handles scale hover */
+      }
+
+      /* Semi-transparent gradient overlay */
+      .reel-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.22) 0%,
+          transparent 38%,
+          rgba(0, 0, 0, 0.6) 100%
+        );
+        pointer-events: none;
+        border-radius: 14px;
+      }
+
+      /* Three-dot menu top-right */
+      .reel-card-top {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        gap: 4px;
+        z-index: 2;
+      }
+      .reel-card-dot-btn {
+        width: 26px;
+        height: 26px;
+        background: rgba(0, 0, 0, 0.45);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.12s;
+      }
+      .reel-card-dot-btn:hover {
+        background: rgba(0, 0, 0, 0.65);
+      }
+      .reel-card-dot-btn svg {
+        width: 14px;
+        height: 14px;
+        fill: #fff;
+      }
+
+      /* View count + play button bottom */
+      .reel-card-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 8px 10px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        z-index: 2;
+      }
+      .reel-card-views {
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.92);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .reel-card-views svg {
+        width: 13px;
+        height: 13px;
+        fill: rgba(255, 255, 255, 0.85);
+      }
+      .reel-play-btn {
+        width: 30px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 1.5px solid rgba(255, 255, 255, 0.6);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        transition: background 0.15s;
+        flex-shrink: 0;
+      }
+      .reel-card:hover .reel-play-btn {
+        background: rgba(255, 255, 255, 0.38);
+      }
+      .reel-play-btn svg {
+        width: 12px;
+        height: 12px;
+        fill: #fff;
+        margin-left: 2px;
+      }
+
+      /* Scroll arrow buttons */
+      .reels-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(
+          -65%
+        ); /* center relative to card height minus bottom padding */
+        width: 34px;
+        height: 34px;
+        background: var(--background);
+        border: 1px solid var(--border);
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+        z-index: 4;
+        transition:
+          box-shadow 0.15s,
+          transform 0.15s;
+      }
+      .reels-arrow:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        transform: translateY(-65%) scale(1.08);
+      }
+      .reels-arrow svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--foreground);
+      }
+      .reels-arrow.left {
+        left: 6px;
+      }
+      .reels-arrow.right {
+        right: 6px;
+      }
+
+      /* ─── Tweet ─── */
       .tweet {
         display: flex;
         gap: 12px;
@@ -396,7 +629,6 @@
       .tweet:hover {
         background: rgba(0, 0, 0, 0.015);
       }
-
       .tweet-avatar {
         width: 38px;
         height: 38px;
@@ -418,7 +650,6 @@
         height: 22px;
         fill: #fff;
       }
-
       .tweet-body {
         flex: 1;
         min-width: 0;
@@ -461,7 +692,6 @@
         width: 15px;
         height: 15px;
       }
-
       .tweet-text {
         font-size: 15px;
         line-height: 20px;
@@ -469,8 +699,6 @@
         color: var(--foreground);
         white-space: pre-wrap;
       }
-
-      /* shadcn Card border-radius matches --radius on media */
       .tweet-media {
         border-radius: calc(var(--radius) * 2);
         overflow: hidden;
@@ -495,11 +723,32 @@
         border-radius: 4px;
       }
 
+      /* 2-image grid */
+      .tweet-media-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        border-radius: calc(var(--radius) * 2);
+        overflow: hidden;
+        border: 1px solid var(--border);
+        margin-bottom: 10px;
+      }
+      .tweet-media-grid img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.15s;
+      }
+      .tweet-media-grid img:hover {
+        opacity: 0.92;
+      }
+
       .tweet-actions {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        max-width: 420px;
+        max-width: 440px;
         margin-top: 4px;
         color: var(--muted-foreground);
       }
@@ -523,7 +772,6 @@
         width: 18px;
         height: 18px;
       }
-
       .tweet-action.reply:hover {
         color: var(--brand);
       }
@@ -571,7 +819,6 @@
         fill: var(--brand);
         stroke: var(--brand);
       }
-
       @keyframes pop {
         0% {
           transform: scale(1);
@@ -586,8 +833,6 @@
       .pop {
         animation: pop 0.3s ease;
       }
-
-      /* play overlay */
       .play-overlay {
         position: absolute;
         inset: 0;
@@ -618,23 +863,55 @@
         margin-left: 3px;
       }
 
+      /* Quote tweet */
+      .tweet-quote {
+        border: 1px solid var(--border);
+        border-radius: calc(var(--radius) * 2);
+        padding: 10px 12px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: var(--foreground);
+        line-height: 19px;
+        cursor: pointer;
+      }
+      .tweet-quote:hover {
+        background: var(--secondary);
+      }
+      .tweet-quote-head {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 4px;
+      }
+      .tweet-quote-avatar {
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        object-fit: cover;
+      }
+      .tweet-quote-name {
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .tweet-quote-handle {
+        color: var(--muted-foreground);
+        font-size: 13px;
+      }
+
       /* ─── Right Sidebar ─── */
       .right {
-        padding: 8px 12px;
+        padding: 8px 16px;
         position: sticky;
         top: 0;
         height: 100vh;
         overflow-y: auto;
       }
-      /* Hide scrollbar but keep scrollable */
       .right::-webkit-scrollbar {
         display: none;
       }
       .right {
         scrollbar-width: none;
       }
-
-      /* shadcn Input */
       .search-box {
         position: relative;
         margin-bottom: 14px;
@@ -666,8 +943,6 @@
         height: 15px;
         fill: var(--muted-foreground);
       }
-
-      /* shadcn Card */
       .panel {
         background: var(--card);
         border-radius: calc(var(--radius) * 2);
@@ -691,7 +966,6 @@
         width: 17px;
         height: 17px;
       }
-
       .news-item,
       .trend-item,
       .person-item,
@@ -706,7 +980,6 @@
       .follow-item:hover {
         background: rgba(15, 20, 25, 0.04);
       }
-
       .news-headline {
         font-weight: 700;
         font-size: 14px;
@@ -741,7 +1014,6 @@
         height: 100%;
         object-fit: cover;
       }
-
       .trend-row {
         display: flex;
         justify-content: space-between;
@@ -771,7 +1043,6 @@
         width: 17px;
         height: 17px;
       }
-
       .show-more {
         padding: 13px 16px;
         color: var(--brand);
@@ -782,28 +1053,6 @@
       .show-more:hover {
         background: rgba(15, 20, 25, 0.04);
       }
-
-      .person-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .person-avatar {
-        width: 38px;
-        height: 38px;
-        border-radius: 9999px;
-        background: var(--foreground);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-      .person-avatar svg {
-        width: 20px;
-        height: 20px;
-        fill: #fff;
-      }
-
       .follow-item {
         display: flex;
         align-items: center;
@@ -827,8 +1076,6 @@
         color: var(--muted-foreground);
         font-size: 13px;
       }
-
-      /* shadcn Button (outline variant) → Follow pill */
       .follow-pill {
         background: var(--primary);
         color: var(--primary-foreground);
@@ -866,7 +1113,6 @@
       .follow-pill.following:hover .pill-label-hover {
         display: inline;
       }
-
       .footer-links {
         padding: 0 4px;
         font-size: 12px;
@@ -883,7 +1129,7 @@
         text-decoration: underline;
       }
 
-      /* ─── Modal / Overlay ─── */
+      /* ─── Modal ─── */
       .overlay {
         position: fixed;
         inset: 0;
@@ -903,8 +1149,6 @@
           opacity: 1;
         }
       }
-
-      /* shadcn Dialog */
       .modal {
         background: var(--popover);
         width: 600px;
@@ -928,7 +1172,6 @@
           opacity: 1;
         }
       }
-
       .modal-header {
         display: flex;
         align-items: center;
@@ -961,7 +1204,6 @@
       .modal-drafts:hover {
         text-decoration: underline;
       }
-
       .modal-context {
         display: flex;
         gap: 12px;
@@ -1008,7 +1250,6 @@
       .ctx-link {
         color: var(--brand);
       }
-
       .thread-line-row {
         display: flex;
         gap: 12px;
@@ -1033,7 +1274,6 @@
       .replying-to a {
         color: var(--brand);
       }
-
       .reply-compose {
         display: flex;
         gap: 12px;
@@ -1050,7 +1290,6 @@
         flex: 1;
         min-width: 0;
       }
-
       .gif-attach {
         position: relative;
         border-radius: calc(var(--radius) * 2);
@@ -1115,7 +1354,6 @@
         fill: #fff;
         margin-left: 2px;
       }
-
       .add-desc {
         color: var(--brand);
         font-size: 13px;
@@ -1132,7 +1370,6 @@
       .add-desc:hover {
         text-decoration: underline;
       }
-
       .modal-toolbar {
         display: flex;
         align-items: center;
@@ -1151,8 +1388,6 @@
         width: 34px;
         height: 34px;
       }
-
-      /* shadcn Button (default) → Reply */
       .reply-submit {
         background: var(--primary);
         color: var(--primary-foreground);
@@ -1171,7 +1406,7 @@
         opacity: 0.88;
       }
 
-      /* ─── Float buttons ─── */
+      /* Float buttons */
       .float-btns {
         position: fixed;
         right: 20px;
@@ -1181,7 +1416,6 @@
         gap: 12px;
         z-index: 10;
       }
-      /* shadcn ghost-button circle */
       .float-btn {
         width: 46px;
         height: 46px;
@@ -1206,8 +1440,7 @@
         height: 20px;
       }
 
-      /* ─── Toast ─── */
-      /* shadcn Sonner-style */
+      /* Toast */
       .toast {
         position: fixed;
         bottom: 88px;
@@ -1232,11 +1465,9 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0);
       }
-
       .hidden {
         display: none !important;
       }
-
       .modal-context,
       .reply-compose {
         cursor: default;
@@ -1322,6 +1553,22 @@
             </svg>
             Chat
           </li>
+          <li class="nav-divider"></li>
+          <li class="nav-item" onclick="switchNav(this)">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="3" />
+              <circle cx="12" cy="12" r="3" />
+              <path
+                d="M2 8h2M20 8h2M2 16h2M20 16h2M8 2v2M16 2v2M8 20v2M16 20v2"
+              />
+            </svg>
+            Reels
+          </li>
           <li class="nav-item" onclick="switchNav(this)">
             <svg
               viewBox="0 0 24 24"
@@ -1357,6 +1604,7 @@
             </svg>
             Bookmarks
           </li>
+          <li class="nav-divider"></li>
           <li class="nav-item" onclick="switchNav(this)">
             <svg
               viewBox="0 0 24 24"
@@ -1433,6 +1681,7 @@
           </div>
         </div>
 
+        <!-- COMPOSER -->
         <div class="composer">
           <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" />
           <div class="composer-body">
@@ -1536,6 +1785,253 @@
           </div>
         </div>
 
+        <!-- REELS SECTION -->
+        <div class="reels-section">
+          <div class="reels-header">
+            <div class="reels-title">
+              <div class="reels-title-icon">
+                <svg viewBox="0 0 24 24">
+                  <rect
+                    x="2"
+                    y="2"
+                    width="20"
+                    height="20"
+                    rx="3"
+                    fill="#fff"
+                    opacity="0"
+                  />
+                  <circle cx="12" cy="12" r="3" fill="none" />
+                  <path
+                    d="M2 8h2M20 8h2M2 16h2M20 16h2M8 2v2M16 2v2M8 20v2M16 20v2"
+                    stroke="#fff"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path d="M10 9l5 3-5 3V9z" fill="#fff" />
+                </svg>
+              </div>
+              Reels
+            </div>
+            <div class="reels-more-btn" onclick="showToast('Reels options')">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="5" cy="12" r="1.3" />
+                <circle cx="12" cy="12" r="1.3" />
+                <circle cx="19" cy="12" r="1.3" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="reels-scroll-wrap">
+            <!-- Left arrow -->
+            <div class="reels-arrow left" onclick="scrollReels(-1)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </div>
+
+            <div class="reels-scroll" id="reelsScroll">
+              <div class="reel-card" onclick="showToast('Opening Reel…')">
+                <img
+                  src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400&q=80"
+                  alt="reel"
+                />
+                <div class="reel-card-overlay"></div>
+                <div class="reel-card-top">
+                  <div class="reel-card-dot-btn">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="5" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="12" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="19" cy="12" r="1.5" fill="#fff" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="reel-card-bottom">
+                  <div class="reel-card-views">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    42K
+                  </div>
+                  <div class="reel-play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reel-card" onclick="showToast('Opening Reel…')">
+                <img
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80"
+                  alt="reel"
+                />
+                <div class="reel-card-overlay"></div>
+                <div class="reel-card-top">
+                  <div class="reel-card-dot-btn">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="5" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="12" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="19" cy="12" r="1.5" fill="#fff" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="reel-card-bottom">
+                  <div class="reel-card-views">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    18K
+                  </div>
+                  <div class="reel-play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reel-card" onclick="showToast('Opening Reel…')">
+                <img
+                  src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=400&q=80"
+                  alt="reel"
+                />
+                <div class="reel-card-overlay"></div>
+                <div class="reel-card-top">
+                  <div class="reel-card-dot-btn">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="5" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="12" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="19" cy="12" r="1.5" fill="#fff" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="reel-card-bottom">
+                  <div class="reel-card-views">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    91K
+                  </div>
+                  <div class="reel-play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reel-card" onclick="showToast('Opening Reel…')">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80"
+                  alt="reel"
+                />
+                <div class="reel-card-overlay"></div>
+                <div class="reel-card-top">
+                  <div class="reel-card-dot-btn">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="5" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="12" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="19" cy="12" r="1.5" fill="#fff" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="reel-card-bottom">
+                  <div class="reel-card-views">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    205K
+                  </div>
+                  <div class="reel-play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reel-card" onclick="showToast('Opening Reel…')">
+                <img
+                  src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?w=400&q=80"
+                  alt="reel"
+                />
+                <div class="reel-card-overlay"></div>
+                <div class="reel-card-top">
+                  <div class="reel-card-dot-btn">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="5" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="12" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="19" cy="12" r="1.5" fill="#fff" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="reel-card-bottom">
+                  <div class="reel-card-views">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    7.3K
+                  </div>
+                  <div class="reel-play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reel-card" onclick="showToast('Opening Reel…')">
+                <img
+                  src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80"
+                  alt="reel"
+                />
+                <div class="reel-card-overlay"></div>
+                <div class="reel-card-top">
+                  <div class="reel-card-dot-btn">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="5" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="12" cy="12" r="1.5" fill="#fff" />
+                      <circle cx="19" cy="12" r="1.5" fill="#fff" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="reel-card-bottom">
+                  <div class="reel-card-views">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    33K
+                  </div>
+                  <div class="reel-play-btn">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right arrow -->
+            <div class="reels-arrow right" onclick="scrollReels(1)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <!-- END REELS -->
+
         <!-- TWEET 1 -->
         <article class="tweet" id="tweet1">
           <div class="tweet-avatar silhouette">
@@ -1557,17 +2053,6 @@
               <span class="tweet-dot">·</span>
               <span class="tweet-time">11h</span>
               <div class="tweet-more">
-                <div class="icon-btn">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M9 9l6 6M9 15l6-6" />
-                  </svg>
-                </div>
                 <div class="icon-btn">
                   <svg
                     viewBox="0 0 24 24"
@@ -1722,17 +2207,6 @@
                     stroke="currentColor"
                     stroke-width="2"
                   >
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M9 9l6 6M9 15l6-6" />
-                  </svg>
-                </div>
-                <div class="icon-btn">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
                     <circle cx="5" cy="12" r="1.3" />
                     <circle cx="12" cy="12" r="1.3" />
                     <circle cx="19" cy="12" r="1.3" />
@@ -1751,6 +2225,445 @@
               <div class="play-overlay">
                 <div class="play-circle">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TWEET 3 -->
+        <article class="tweet">
+          <div class="tweet-avatar">
+            <img
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt=""
+            />
+          </div>
+          <div class="tweet-body">
+            <div class="tweet-head">
+              <span class="tweet-name">Priya Nair</span>
+              <svg class="verified-badge" viewBox="0 0 22 22">
+                <path
+                  fill="#15803D"
+                  d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.135-1.897-.135-.633-.45-1.214-.912-1.676-.462-.462-1.043-.777-1.676-.912-.633-.135-1.29-.088-1.897.135-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.018-1.273.215-1.813.57-.54.354-.972.852-1.246 1.439-.607-.223-1.264-.27-1.897-.135-.633.135-1.214.45-1.676.912-.462.462-.777 1.043-.912 1.676-.135.633-.088 1.29.135 1.897-.587.274-1.085.705-1.439 1.246-.354.54-.551 1.167-.569 1.813.018.646.215 1.273.57 1.813.354.54.852.972 1.438 1.246-.223.607-.27 1.264-.135 1.897.135.633.45 1.214.912 1.676.462.462 1.043.777 1.676.912.633.135 1.29.088 1.897-.135.274.587.705 1.085 1.246 1.439.54.354 1.167.551 1.813.569.646-.018 1.273-.215 1.813-.57.54-.354.972-.852 1.246-1.438.607.223 1.264.27 1.897.135.633-.135 1.214-.45 1.676-.912.462-.462.777-1.043.912-1.676.135-.633.088-1.29-.135-1.897.587-.274 1.085-.705 1.439-1.246.354-.54.551-1.167.569-1.813zm-11.564 3.566-3.32-3.319 1.414-1.414 1.906 1.905 4.926-4.925 1.414 1.414z"
+                />
+              </svg>
+              <span class="tweet-handle">@priyanair</span>
+              <span class="tweet-dot">·</span>
+              <span class="tweet-time">2h</span>
+              <div class="tweet-more">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="5" cy="12" r="1.3" />
+                    <circle cx="12" cy="12" r="1.3" />
+                    <circle cx="19" cy="12" r="1.3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="tweet-text">
+              Friendly reminder that AI didn't replace writers. It just made bad
+              writing free and abundant. Good writing is now worth even more. ✍️
+            </div>
+            <div class="tweet-actions">
+              <div class="tweet-action reply" onclick="openModal(event)">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M21 12c0 4.4-4 8-9 8-1.4 0-2.7-.2-3.9-.7L3 21l1.8-4.4C4.3 15.5 4 13.8 4 12c0-4.4 4-8 9-8s8 3.6 8 8z"
+                    />
+                  </svg>
+                </div>
+                <span>312</span>
+              </div>
+              <div
+                class="tweet-action retweet"
+                onclick="toggleRetweet(this, event)"
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 1l4 4-4 4" />
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                    <path d="M7 23l-4-4 4-4" />
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+                  </svg>
+                </div>
+                <span class="rt-count">1.4K</span>
+              </div>
+              <div class="tweet-action like" onclick="toggleLike(this, event)">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 7-3.7A4.5 4.5 0 0 1 19 11c0 5.5-7 10-7 10z"
+                    />
+                  </svg>
+                </div>
+                <span class="like-count">18.7K</span>
+              </div>
+              <div class="tweet-action views">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 19V10M10 19V4M16 19v-7M22 19H2" />
+                  </svg>
+                </div>
+                <span>2.1M</span>
+              </div>
+              <div
+                class="tweet-action bookmark"
+                onclick="toggleBookmark(this, event)"
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M6 3h12v18l-6-4-6 4z" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="tweet-action share"
+                onclick="
+                  showToast('Link copied');
+                  event.stopPropagation();
+                "
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 3v12M7 8l5-5 5 5" />
+                    <path d="M5 21h14" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TWEET 4 — photo grid -->
+        <article class="tweet">
+          <div class="tweet-avatar">
+            <img src="https://randomuser.me/api/portraits/men/28.jpg" alt="" />
+          </div>
+          <div class="tweet-body">
+            <div class="tweet-head">
+              <span class="tweet-name">Marcus Webb</span>
+              <span class="tweet-handle">@marcuswebb</span>
+              <span class="tweet-dot">·</span>
+              <span class="tweet-time">4h</span>
+              <div class="tweet-more">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="5" cy="12" r="1.3" />
+                    <circle cx="12" cy="12" r="1.3" />
+                    <circle cx="19" cy="12" r="1.3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="tweet-text">
+              Golden hour in Kathmandu never disappoints 📸🏔️
+            </div>
+            <div class="tweet-media-grid">
+              <img
+                src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&q=80"
+                alt="Kathmandu 1"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=600&q=80"
+                alt="Kathmandu 2"
+              />
+            </div>
+            <div class="tweet-actions">
+              <div class="tweet-action reply" onclick="openModal(event)">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M21 12c0 4.4-4 8-9 8-1.4 0-2.7-.2-3.9-.7L3 21l1.8-4.4C4.3 15.5 4 13.8 4 12c0-4.4 4-8 9-8s8 3.6 8 8z"
+                    />
+                  </svg>
+                </div>
+                <span>47</span>
+              </div>
+              <div
+                class="tweet-action retweet"
+                onclick="toggleRetweet(this, event)"
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 1l4 4-4 4" />
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                    <path d="M7 23l-4-4 4-4" />
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+                  </svg>
+                </div>
+                <span class="rt-count">203</span>
+              </div>
+              <div class="tweet-action like" onclick="toggleLike(this, event)">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 7-3.7A4.5 4.5 0 0 1 19 11c0 5.5-7 10-7 10z"
+                    />
+                  </svg>
+                </div>
+                <span class="like-count">4.1K</span>
+              </div>
+              <div class="tweet-action views">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 19V10M10 19V4M16 19v-7M22 19H2" />
+                  </svg>
+                </div>
+                <span>88K</span>
+              </div>
+              <div
+                class="tweet-action bookmark"
+                onclick="toggleBookmark(this, event)"
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M6 3h12v18l-6-4-6 4z" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="tweet-action share"
+                onclick="
+                  showToast('Link copied');
+                  event.stopPropagation();
+                "
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 3v12M7 8l5-5 5 5" />
+                    <path d="M5 21h14" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TWEET 5 — quote tweet -->
+        <article class="tweet">
+          <div class="tweet-avatar">
+            <img
+              src="https://randomuser.me/api/portraits/women/67.jpg"
+              alt=""
+            />
+          </div>
+          <div class="tweet-body">
+            <div class="tweet-head">
+              <span class="tweet-name">Selin Çelik</span>
+              <svg class="verified-badge" viewBox="0 0 22 22">
+                <path
+                  fill="#15803D"
+                  d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.135-1.897-.135-.633-.45-1.214-.912-1.676-.462-.462-1.043-.777-1.676-.912-.633-.135-1.29-.088-1.897.135-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.018-1.273.215-1.813.57-.54.354-.972.852-1.246 1.439-.607-.223-1.264-.27-1.897-.135-.633.135-1.214.45-1.676.912-.462.462-.777 1.043-.912 1.676-.135.633-.088 1.29.135 1.897-.587.274-1.085.705-1.439 1.246-.354.54-.551 1.167-.569 1.813.018.646.215 1.273.57 1.813.354.54.852.972 1.438 1.246-.223.607-.27 1.264-.135 1.897.135.633.45 1.214.912 1.676.462.462 1.043.777 1.676.912.633.135 1.29.088 1.897-.135.274.587.705 1.085 1.246 1.439.54.354 1.167.551 1.813.569.646-.018 1.273-.215 1.813-.57.54-.354.972-.852 1.246-1.438.607.223 1.264.27 1.897.135.633-.135 1.214-.45 1.676-.912.462-.462.777-1.043.912-1.676.135-.633.088-1.29-.135-1.897.587-.274 1.085-.705 1.439-1.246.354-.54.551-1.167.569-1.813zm-11.564 3.566-3.32-3.319 1.414-1.414 1.906 1.905 4.926-4.925 1.414 1.414z"
+                />
+              </svg>
+              <span class="tweet-handle">@selincelik</span>
+              <span class="tweet-dot">·</span>
+              <span class="tweet-time">6h</span>
+              <div class="tweet-more">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="5" cy="12" r="1.3" />
+                    <circle cx="12" cy="12" r="1.3" />
+                    <circle cx="19" cy="12" r="1.3" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="tweet-text">
+              This is genuinely the most relatable thing I've seen all year 💀
+            </div>
+            <div
+              class="tweet-quote"
+              onclick="
+                showToast('Opening original post…');
+                event.stopPropagation();
+              "
+            >
+              <div class="tweet-quote-head">
+                <img
+                  class="tweet-quote-avatar"
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt=""
+                />
+                <span class="tweet-quote-name">Alex Smith</span>
+                <span class="tweet-quote-handle">@AlexSmithmobbin · 8h</span>
+              </div>
+              Me at 9am: I'll meal prep, go to the gym, finish that side
+              project, and be in bed by 10.<br />Me at 9pm: orders delivery,
+              watches three episodes, opens laptop, closes laptop.
+            </div>
+            <div class="tweet-actions">
+              <div class="tweet-action reply" onclick="openModal(event)">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M21 12c0 4.4-4 8-9 8-1.4 0-2.7-.2-3.9-.7L3 21l1.8-4.4C4.3 15.5 4 13.8 4 12c0-4.4 4-8 9-8s8 3.6 8 8z"
+                    />
+                  </svg>
+                </div>
+                <span>89</span>
+              </div>
+              <div
+                class="tweet-action retweet"
+                onclick="toggleRetweet(this, event)"
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 1l4 4-4 4" />
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                    <path d="M7 23l-4-4 4-4" />
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+                  </svg>
+                </div>
+                <span class="rt-count">541</span>
+              </div>
+              <div class="tweet-action like" onclick="toggleLike(this, event)">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 7-3.7A4.5 4.5 0 0 1 19 11c0 5.5-7 10-7 10z"
+                    />
+                  </svg>
+                </div>
+                <span class="like-count">9.2K</span>
+              </div>
+              <div class="tweet-action views">
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 19V10M10 19V4M16 19v-7M22 19H2" />
+                  </svg>
+                </div>
+                <span>420K</span>
+              </div>
+              <div
+                class="tweet-action bookmark"
+                onclick="toggleBookmark(this, event)"
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M6 3h12v18l-6-4-6 4z" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="tweet-action share"
+                onclick="
+                  showToast('Link copied');
+                  event.stopPropagation();
+                "
+              >
+                <div class="icon-btn">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 3v12M7 8l5-5 5 5" />
+                    <path d="M5 21h14" />
+                  </svg>
                 </div>
               </div>
             </div>
@@ -1941,12 +2854,43 @@
               alt=""
             />
             <div style="flex: 1; min-width: 0">
-              <div class="follow-name">Low Quality Memes <span>🤡</span></div>
+              <div class="follow-name">Low Quality Memes 🤡</div>
               <div class="follow-handle">@ipostlqmemes</div>
             </div>
             <div class="follow-pill" onclick="toggleFollow(this)">
               <span class="pill-label-default">Follow</span>
             </div>
+          </div>
+          <div class="follow-item">
+            <img
+              class="follow-avatar"
+              src="https://randomuser.me/api/portraits/women/33.jpg"
+              alt=""
+            />
+            <div style="flex: 1; min-width: 0">
+              <div class="follow-name">Zara Kim</div>
+              <div class="follow-handle">@zarakim.tech</div>
+            </div>
+            <div class="follow-pill" onclick="toggleFollow(this)">
+              <span class="pill-label-default">Follow</span>
+            </div>
+          </div>
+          <div class="follow-item">
+            <img
+              class="follow-avatar"
+              src="https://randomuser.me/api/portraits/men/52.jpg"
+              alt=""
+            />
+            <div style="flex: 1; min-width: 0">
+              <div class="follow-name">Pulse Daily ⚡</div>
+              <div class="follow-handle">@pulsedaily</div>
+            </div>
+            <div class="follow-pill" onclick="toggleFollow(this)">
+              <span class="pill-label-default">Follow</span>
+            </div>
+          </div>
+          <div class="show-more" onclick="showToast('More suggestions…')">
+            Show more
           </div>
         </div>
 
@@ -2006,7 +2950,6 @@
             Drafts
           </div>
         </div>
-
         <div class="modal-context">
           <div class="ctx-avatar">
             <svg viewBox="0 0 24 24">
@@ -2031,14 +2974,12 @@
             </div>
           </div>
         </div>
-
         <div class="thread-line-row">
           <div class="thread-line-col"><div class="thread-line"></div></div>
           <div class="replying-to">
             Replying to <a href="#">@HumansNoContext</a>
           </div>
         </div>
-
         <div class="reply-compose">
           <img
             class="rc-avatar"
@@ -2093,7 +3034,6 @@ LOL, the baby's probably screaming at their parents… internally.</textarea
             </div>
           </div>
         </div>
-
         <div class="modal-toolbar">
           <div class="modal-toolbar-left">
             <div class="icon-btn">
@@ -2241,9 +3181,7 @@ LOL, the baby's probably screaming at their parents… internally.</textarea
       }
       function toggleLike(el, e) {
         e.stopPropagation();
-        const countEl = el.querySelector(".like-count");
         const liked = el.classList.toggle("liked");
-        countEl.textContent = liked ? "2.4K" : "2.3K";
         if (liked) {
           el.querySelector("svg").classList.add("pop");
           setTimeout(
@@ -2255,7 +3193,6 @@ LOL, the baby's probably screaming at their parents… internally.</textarea
       function toggleRetweet(el, e) {
         e.stopPropagation();
         const rt = el.classList.toggle("retweeted");
-        el.querySelector(".rt-count").textContent = rt ? "79" : "78";
         if (rt) showToast("Reposted");
       }
       function toggleBookmark(el, e) {
@@ -2289,6 +3226,10 @@ LOL, the baby's probably screaming at their parents… internally.</textarea
       function submitReply() {
         showToast("Your reply was sent!");
         closeModal();
+      }
+      function scrollReels(dir) {
+        const s = document.getElementById("reelsScroll");
+        s.scrollBy({ left: dir * 360, behavior: "smooth" });
       }
       document
         .getElementById("overlay")
